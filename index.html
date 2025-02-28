@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio de Mickaël</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+</head>
+<body>
+    <!-- Section Accueil -->
+    <header id="accueil">
+        <nav>
+            <div class="logo">Mickaël</div>
+            <ul class="menu">
+                <li><a href="#accueil">Accueil</a></li>
+                <li><a href="#a-propos">À propos</a></li>
+                <li><a href="#projets">Projets</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="container">
+            <div class="texte">
+                <h1>Mickaël Elohim D</h1>
+                <p>Do You Know Me?</p>
+                <ul>
+                    <li><span class="check">✓</span> Je suis Mickaël ED</li>
+                    
+                </ul>
+                <p>En tant qu'étudiant développeur d'applications, je combine une solide base technique acquise en formation avec une réelle passion pour l'innovation. Mon approche proactive et ma capacité à m'adapter rapidement aux nouveaux langages et outils font de moi un atout pour votre équipe. En alternance, je m'engage à contribuer activement à vos projets tout en approfondissant mes compétences, créant ainsi une relation gagnant-gagnant pour votre entreprise et mon parcours professionnel.</p>
+                <a href="#contact" class="bouton">Contactez-moi</a>
+            </div>
+            <div class="photo">
+                <img src="image/moi.png" alt="Photo de Mickaël">
+            </div>
+        </div>
+    </header>
+
+    <!-- Section À propos -->
+    <section id="a-propos">
+        <div class="container">
+            <div class="photo">
+                <img src="image/WhatsApp_Image_2025-02-23_à_13.45.56_9ce06e8a-removebg-preview.png" alt="Photo À propos">
+            </div>
+            <div class="texte">
+                <h2>À propos de moi</h2>
+                <p class="sous-titre">L'excellence, une ligne de code à la fois :</p>
+                <p>Passionné par le développement, je m'efforce de repousser mes limites et d'améliorer mes compétences à chaque projet. Mon objectif ? Transformer des idées en applications fonctionnelles et innovantes.</p>
+                <a href="#contact" class="bouton">Contactez-moi</a>
+            </div>
+        </div>
+    </section>
+    <!-- Section Projets -->
+    <section id="projets">
+        <div class="container">
+            <h2>Portfolio</h2>
+            <p class="sous-titre">Some Projects</p>
+            <div class="projets-grid">
+                <div class="projet">
+                    <img src="image/pac-man-jeu-video.jpg" alt="Projet 1">
+                    <h3>Pac-Man</h3>
+                    <p>Développement du jeux pacman</p>
+                    <a href="#" class="bouton">Read More</a>
+                </div>
+                <div class="projet">
+                    <img src="image/IMG_0669 - Copie.jpg" alt="Projet 2">
+                    <h3>Personal Website Lawyer</h3>
+                    <p>Création d'un site web personnel pour un avocat.</p>
+                    <a href="#" class="bouton">Read More</a>
+                </div>
+                <div class="projet">
+                    <img src="images/projet3.jpg" alt="Projet 3">
+                    <h3>Pet Service</h3>
+                    <p>Plateforme de services pour animaux de compagnie.</p>
+                    <a href="#" class="bouton">Read More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Compétences -->
+    <section id="mon-equipe">
+        <div class="container">
+            <h2>Mon Équipe</h2>
+            <p class="sous-titre">Happy Clients Say</p>
+            <div class="equipe-grid">
+                <div class="membre-equipe">
+                    <img src="image/moi.png" alt="Membre 1">
+                    <h3>John Doe</h3>
+                    <p class="poste">Company Name</p>
+                    <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </div>
+                <div class="membre-equipe">
+                    <img src="image/moi.png" alt="Membre 2">
+                    <h3>Jane Smith</h3>
+                    <p class="poste">Company Name</p>
+                    <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </div>
+                <div class="membre-equipe">
+                    <img src="image/moi.png" alt="Membre 3">
+                    <h3>Michael Johnson</h3>
+                    <p class="poste">Company Name</p>
+                    <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Contact -->
+    <section id="contact">
+        <div class="container">
+            <h2>Contact</h2>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Coordonnées</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 23 Rue du 4 Septembre, 72000 Le Mans</p>
+                    <p><i class="fas fa-phone"></i> +33 6 69 17 79 83</p>
+                    <p><i class="fas fa-envelope"></i> mickaeldjedje7@gmail.com</p>
+                </div>
+                <div class="contact-form">
+                    <h3>Envoyez un message</h3>
+                    <form action="#" method="post">
+                        <label for="nom">Nom :</label>
+                        <input type="text" id="nom" name="nom" required>
+                        <label for="email">Email :</label>
+                        <input type="email" id="email" name="email" required>
+                        <label for="message">Message :</label>
+                        <textarea id="message" name="message" required></textarea>
+                        <button type="submit">Envoyer</button>
+                    </form>
+                </div>
+            </div>
+            <div class="social-links">
+                <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Mickaël. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="scripts.js"></script>
+</body>
+</html>
