@@ -1478,30 +1478,50 @@ const observer = new IntersectionObserver((entries) => {
             }
         });
 
-        // Fonction pour le toggle mode sombre/clair
-        function setupDarkModeToggle() {
-            const toggle = document.querySelector('.dark-mode-toggle');
-            if (!toggle) return;
+         // Fonction pour le basculement mode sombre/clair
+    function setupDarkModeToggle() {
+        const toggle = document.querySelector('.dark-mode-toggle');
+        
+        if (!toggle) {
+            console.error("Bouton de basculement non trouvé");
+            return;
+        }
+        
+        // Vérifier le thème enregistré lors du chargement initial
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+            toggle.textContent = '☀️';
+            document.body.classList.add('light-mode');
+        } else {
+            toggle.textContent = '🌙';
+            document.body.classList.remove('light-mode');
+        }
+        
+        // Ajouter l'écouteur d'événement pour le clic
+        toggle.addEventListener('click', function() {
+            console.log("Bouton de basculement cliqué");
             
-            toggle.addEventListener('click', () => {
-                if (toggle.textContent === '🌙') {
-                    toggle.textContent = '☀️';
-                    document.body.classList.add('light-mode');
-                    localStorage.setItem('theme', 'light');
-                } else {
-                    toggle.textContent = '🌙';
-                    document.body.classList.remove('light-mode');
-                    localStorage.setItem('theme', 'dark');
-                }
-            });
-            
-            // Vérifier le thème enregistré
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'light') {
+            if (document.body.classList.contains('light-mode')) {
+                // Passage au mode sombre
+                toggle.textContent = '🌙';
+                document.body.classList.remove('light-mode');
+                localStorage.setItem('theme', 'dark');
+                console.log("Mode sombre activé");
+            } else {
+                // Passage au mode clair
                 toggle.textContent = '☀️';
                 document.body.classList.add('light-mode');
+                localStorage.setItem('theme', 'light');
+                console.log("Mode clair activé");
             }
-        }
+        });
+    }
+    
+    // Appel direct de la fonction
+    setupDarkModeToggle();
+    
+    // Autres initialisations au chargement de la page
+    // ...
         
         // Animation "3D Tilt" pour les cartes de projets
         function setupCardTilt() {
