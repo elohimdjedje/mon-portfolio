@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projets</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(-45deg, #1e1e2f, #2d2d44, #1a1a2a, #292938);
+            background-size: 400% 400%;
+            animation: gradientFlow 15s ease infinite;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none"/><path d="M0,0L100,100M100,0L0,100" stroke="rgba(255,255,255,0.03)" stroke-width="0.5"/></svg>');
+            filter: blur(50px);
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            margin-bottom: 30px;
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 10px 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo svg {
+            width: 40px;
+            height: 40px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 16px;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        nav ul li a:hover {
+            opacity: 1;
+        }
+
+        .dark-mode-toggle {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .dark-mode-toggle:hover {
+            transform: rotate(360deg);
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(255, 130, 255, 0.3),
+                        0 0 20px rgba(255, 130, 255, 0.2),
+                        0 0 30px rgba(255, 130, 255, 0.1);
+            animation: glowPulse 3s infinite;
+        }
+
+        .description {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 50px;
+            max-width: 800px;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            position: relative;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            transform: translateX(200%);
+            opacity: 0;
+            position: relative;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(145, 149, 246, 0.5),
+                    0 5px 15px rgba(255, 120, 196, 0.5);
+        }
+
+        .project-card.visible {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.5s, filter 0.5s;
+            filter: grayscale(100%);
+        }
+
+        .project-card:hover .project-image {
+            transform: scale(1.05);
+            filter: grayscale(0%);
+        }
+
+        .project-content {
+            padding: 20px;
+            position: relative;
+        }
+
+        .project-title {
+            color: white;
+            font-size: 20px;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            position: relative;
+            z-index: 2;
+        }
+
+        .project-title a {
+            color: inherit;
+            text-decoration: none;
+            display: block;
+            width: 100%;
+            padding: 5px 0;
+            transition: color 0.3s;
+        }
+
+        .project-title a:hover {
+            color: #FF78C4;
+        }
+
+        .project-title span {
+            display: inline-flex;
+        }
+
+        .project-description {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        footer {
+            margin-top: 50px;
+            padding: 20px;
+            text-align: right;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 12px;
+        }
+
+        footer a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: white;
+        }
+
+        /* Ajout de subtiles particules métalliques en arrière-plan */
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-10px) rotate(360deg); }
+        }
+
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: linear-gradient(to right, #9195F6, #FF78C4);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: float 8s infinite alternate;
+        }
+
+        /* Animation gradient de fond */
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Effet néon sur le titre */
+        @keyframes glowPulse {
+            0% {
+                text-shadow: 0 0 10px rgba(255, 130, 255, 0.3),
+                             0 0 20px rgba(255, 130, 255, 0.2);
+            }
+            50% {
+                text-shadow: 0 0 20px rgba(255, 130, 255, 0.5),
+                             0 0 40px rgba(255, 130, 255, 0.4),
+                             0 0 60px rgba(255, 130, 255, 0.3);
+            }
+            100% {
+                text-shadow: 0 0 10px rgba(255, 130, 255, 0.3),
+                             0 0 20px rgba(255, 130, 255, 0.2);
+            }
+        }
+
+        /* Animation de correction de texte */
+        @keyframes textCorrection {
+            0% { opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(145, 149, 246, 0.2), rgba(255, 120, 196, 0.2));
+            opacity: 0;
+            transition: opacity 0.4s;
+            z-index: 1;
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        /* Mode clair pour le texte */
+        body.light-mode {
+            background: linear-gradient(-45deg, #f0f0f5, #e0e0e5, #d0d0d5, #e0e0e5);
+            color: #333;
+        }
+        
+        body.light-mode h1, 
+        body.light-mode h2,
+        body.light-mode h3,
+        body.light-mode .project-title {
+            color: #333;
+        }
+        
+        body.light-mode p,
+        body.light-mode .project-description {
+            color: #555;
+        }
+        
+        body.light-mode nav ul li a {
+            color: #333;
+        }
+
+        /* Animation pour l'effet de correction automatique de texte */
+        .text-correction {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .text-correction span {
+            color: #FF78C4;
+            font-size: 16px;
+            font-family: monospace;
+            white-space: nowrap;
+        }
+
+        .typing-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 20px;
+            background-color: #FF78C4;
+            margin-left: 4px;
+            animation: blink 0.7s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .project-card:hover .text-correction {
+            animation: textCorrection 2s forwards;
+        }
+    </style>
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" fill="#FF78C4">
+                    <rect x="15" y="5" width="20" height="20" rx="5" fill="#9195F6" />
+                    <circle cx="25" cy="15" r="5" fill="#FF78C4" />
+                    <path d="M20,25 L20,40 Q20,45 15,45" stroke="#FF78C4" stroke-width="2" fill="none" />
+                    <path d="M25,25 L25,45" stroke="#FF78C4" stroke-width="2" fill="none" />
+                    <path d="M30,25 L30,40 Q30,45 35,45" stroke="#FF78C4" stroke-width="2" fill="none" />
+                </svg>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="a-propos.html">À propos</a></li>
+                    <li><a href="#">Projets</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <button class="dark-mode-toggle">🌙</button>
+        </header>
+
+        <h1>Projets</h1>
+        <p class="description">Je travaille constamment sur de nouveaux projets passionnants, donc cette liste change très souvent. Consultez-la régulièrement pour découvrir les nouveaux projets.</p>
+
+        <div class="projects-grid">
+            <div class="project-card">
+                <img src="image/OIP.jpeg" class="project-image" alt="Scraper Boulanger">
+                <div class="project-content">
+                    <h3 class="project-title">
+                        <a href="pdfs/PROJET_FINAL_DATA.docx">Scraper le site boulanger</a>
+                        <a href="downloads/projet_final.zip">CODE</a>
+                    </h3>
+                    <p class="project-description">PYTHON & MySQL...</p>
+                    <div class="text-correction">
+                        <span>CLIQUEZ soit sur Scraper le site... ou code !</span>
+                        <div class="typing-cursor"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="image/java-programming.webp" class="project-image" alt="Gestion d'utilisateur">
+                <div class="project-content">
+                    <h3 class="project-title">
+                        <a href="pdfs/Analyse de l.docx">Gestion d'utilisateur</a>
+                        <a href="downloads/javafx-app.rar">CODE</a>
+                    </h3>
+                    <p class="project-description">JAVA & MAVEN ...</p>
+                    <div class="text-correction">
+                        <span>CLIQUEZ soit sur Gestion d'utilis... ou code !</span>
+                        <div class="typing-cursor"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="image/pacman-arcade.jpg" class="project-image" alt="Pac-man">
+                <div class="project-content">
+                    <h3 class="project-title">
+                        <a href="pdfs/Presentation1.pptx" download="Pac-Man_Presentation.pptx">Pac-man</a>
+                        <a href="downloads/pacman0.rar">CODE</a>
+                    </h3>
+                    <p class="project-description">C & ALEGRO...</p>
+                    <div class="text-correction">
+                        <span>CLIQUEZ soit sur Pac-m... ou code !</span>
+                        <div class="typing-cursor"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="image/IMG_0669 - Copie.jpg" class="project-image" alt="Bibliothèque en ligne">
+                <div class="project-content">
+                    <h3 class="project-title">
+                        <a href="pdfs/Analyse complète du système de gestion de bibliothèque.docx">Bibliothèque en ligne</a>
+                        <a href="downloads/sitedev (2).zip">CODE</a>
+                    </h3>
+                    <p class="project-description">HTML, CSS, JS, PHP, Bootstrap 5, Font Awesome 6, MySQL...</p>
+                    <div class="text-correction">
+                        <span>CLIQUEZ soit sur Bibliothèque en... ou code !</span>
+                        <div class="typing-cursor"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="image/portfolio.webp" class="project-image" alt="Portfolio">
+                <div class="project-content">
+                    <h3 class="project-title">
+                        <a href="pdfs/projet-portfolio.pptx">PORTFOLIO</a>
+                        <a href="downloads/sitedev (2).zip">CODE</a>
+                    </h3>
+                    <p class="project-description">HTML, CSS, JS...</p>
+                    <div class="text-correction">
+                        <span>CLIQUEZ soit sur Portfolio... ou code !</span>
+                        <div class="typing-cursor"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            
+        </footer>
+    </div>
+
+    <script>
+        // Créer des particules métalliques en arrière-plan
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Position aléatoire
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                
+                // Taille aléatoire
+                const size = Math.random() * 3;
+                
+                // Délai d'animation aléatoire
+                const delay = Math.random() * 5;
+                
+                particle.style.left = `${posX}%`;
+                particle.style.top = `${posY}%`;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.animationDelay = `${delay}s`;
+                particle.style.animationDuration = `${8 + Math.random() * 10}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        <!-- Ajoutez cette fonction à votre script -->
+function showPreview(file) {
+    const previewUrl = `https://view.officeapps.live.com/op/embed.aspx?src=${window.location.href.split('/').slice(0,-1).join('/')}/${file}`;
+    window.open(previewUrl, '_blank');
+}
+
+        // Animation des cartes de projet
+        function animateCards() {
+            const cards = document.querySelectorAll('.project-card');
+            
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.classList.add('visible');
+                }, 300 * index); // Délai progressif pour l'effet de "locomotive"
+            });
+        }
+
+        // Fonction pour le toggle mode sombre/clair
+        function setupDarkModeToggle() {
+            const toggle = document.querySelector('.dark-mode-toggle');
+            if (!toggle) return;
+            
+            toggle.addEventListener('click', () => {
+                if (toggle.textContent === '🌙') {
+                    toggle.textContent = '☀️';
+                    document.body.classList.add('light-mode');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    toggle.textContent = '🌙';
+                    document.body.classList.remove('light-mode');
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
+            
+            // Vérifier le thème enregistré
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') {
+                toggle.textContent = '☀️';
+                document.body.classList.add('light-mode');
+            }
+        }
+
+        // Animation "3D Tilt" pour les cartes de projets
+        function setupCardTilt() {
+            const cards = document.querySelectorAll('.project-card');
+            
+            cards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const cardRect = card.getBoundingClientRect();
+                    const cardCenterX = cardRect.left + cardRect.width / 2;
+                    const cardCenterY = cardRect.top + cardRect.height / 2;
+                    
+                    const mouseX = e.clientX - cardCenterX;
+                    const mouseY = e.clientY - cardCenterY;
+                    
+                    const rotateX = (mouseY / cardRect.height * 15).toFixed(2);
+                    const rotateY = (mouseX / cardRect.width * -15).toFixed(2);
+                    
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = '';
+                    setTimeout(() => {
+                        if (!card.matches(':hover')) {
+                            card.classList.add('visible');
+                        }
+                    }, 300);
+                });
+            });
+        }
+
+        // Exécution au chargement de la page
+        window.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            setupDarkModeToggle();
+            animateCards();
+            setupCardTilt();
+            
+            // Animation d'entrée pour les cartes de projet
+            const cards = document.querySelectorAll('.project-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add('visible');
+                        }, 150 * index);
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            cards.forEach(card => {
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>

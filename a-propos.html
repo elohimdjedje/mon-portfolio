@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - DJEDJE ELOHIM M.</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(-45deg, #1e1e2f, #2d2d44, #1a1a2a, #292938);
+            background-size: 400% 400%;
+            animation: gradientFlow 15s ease infinite;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 40px 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none"/><path d="M0,0L100,100M100,0L0,100" stroke="rgba(255,255,255,0.03)" stroke-width="0.5"/></svg>');
+            filter: blur(50px);
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* Navigation avec logo */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            margin-bottom: 30px;
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 15px 30px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo svg {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .logo span {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .menu li a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 16px;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+            position: relative;
+        }
+
+        .menu li a:hover {
+            opacity: 1;
+        }
+
+        .menu li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(to right, #9195F6, #FF78C4);
+            transition: width 0.3s;
+        }
+
+        .menu li a:hover::after {
+            width: 100%;
+        }
+
+        .dark-mode-toggle {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .dark-mode-toggle:hover {
+            transform: rotate(360deg);
+        }
+
+        .back-button {
+            background: linear-gradient(to right, #9195F6, #FF78C4);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-bottom: 20px;
+            transition: transform 0.3s;
+        }
+
+        .back-button:hover {
+            transform: translateY(-3px);
+        }
+
+        .header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 80px;
+        }
+
+        .intro {
+            max-width: 600px;
+        }
+
+        .photo-container {
+            width: 280px;
+            height: 360px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            /* Styles pour l'animation 3D */
+            transition: transform 0.5s ease;
+            transform-style: preserve-3d;
+        }
+
+        .photo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .photo-container:hover img {
+            transform: translateZ(20px);
+        }
+
+        .photo-container::before {
+            content: "John Mickael";
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 12px;
+            color: #fff;
+            z-index: 2;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255, 130, 255, 0.3),
+                         0 0 20px rgba(255, 130, 255, 0.2),
+                         0 0 30px rgba(255, 130, 255, 0.1);
+            animation: glowPulse 3s infinite;
+        }
+
+        /* Animation de texte pour h1 */
+        @keyframes glowPulse {
+            0% {
+                text-shadow: 0 0 10px rgba(255, 130, 255, 0.3),
+                            0 0 20px rgba(255, 130, 255, 0.2);
+            }
+            50% {
+                text-shadow: 0 0 20px rgba(255, 130, 255, 0.5),
+                            0 0 40px rgba(255, 130, 255, 0.4),
+                            0 0 60px rgba(255, 130, 255, 0.3);
+            }
+            100% {
+                text-shadow: 0 0 10px rgba(255, 130, 255, 0.3),
+                            0 0 20px rgba(255, 130, 255, 0.2);
+            }
+        }
+
+        .intro p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 30px;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .badges {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .badge {
+            background: linear-gradient(to right, rgba(145, 149, 246, 0.8), rgba(255, 120, 196, 0.8));
+            border-radius: 30px;
+            padding: 8px 16px;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #fff;
+        }
+
+        .badge svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .cv-button {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(to right, #FF78C4, #9195F6);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            gap: 10px;
+            animation: pulse 2s ease infinite;
+        }
+
+        .cv-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .cv-button:active {
+            transform: translateY(-1px);
+        }
+
+        .cv-button svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .skills-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+            margin-top: 60px;
+            position: relative;
+            border-radius: 20px;
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .skill-card {
+            flex: 1;
+            padding: 20px;
+            transform: translateX(120%);
+            opacity: 0;
+            transition: transform 0.8s ease, opacity 0.8s ease;
+        }
+
+        .skill-card.active {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .skill-icon {
+            color: #FF78C4;
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+
+        .skill-title {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .skill-description {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
+        /* Particules */
+        #particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: linear-gradient(to right, #9195F6, #FF78C4);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: float 8s infinite alternate;
+        }
+
+        h1.experience-title {
+            margin-top: 50px;
+            text-align: center;
+            color: #fff;
+        }
+
+        .experience-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+        }
+
+        .experience-box {
+            width: 45%;
+            height: auto;
+            max-height: 400px;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: #FF78C4 rgba(255, 255, 255, 0.1);
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.5s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+            opacity: 0;
+            background-color: rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        .experience-box img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .experience-box h2 {
+            font-size: 1.2rem;
+            color: #fff;
+        }
+
+        .professional {
+            transform: translateX(-100%);
+        }
+
+        .academic {
+            transform: translateX(100%);
+        }
+
+        .experience-box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .experience-box:active {
+            transform: scale(0.95);
+        }
+
+        /* Styles pour les détails d'expérience */
+        .experience-details {
+            margin-top: 20px;
+            text-align: left;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .experience-box:hover .experience-details {
+            display: block;
+            opacity: 1;
+        }
+
+        .exp-item {
+            margin-bottom: 15px;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+        }
+
+        .exp-item h3 {
+            font-size: 1rem;
+            margin-bottom: 5px;
+            color: #FF78C4;
+        }
+
+        .exp-item .role {
+            font-size: 0.9rem;
+            font-style: italic;
+            margin-bottom: 8px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .exp-item ul {
+            padding-left: 20px;
+        }
+
+        .exp-item li {
+            font-size: 0.85rem;
+            margin-bottom: 5px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Style pour les liens dans les titres d'expérience */
+        .experience-box h2 a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .experience-box h2 a:hover {
+            color: #FF78C4;
+            text-decoration: underline;
+        }
+
+        /* Style pour la scrollbar */
+        .experience-box::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .experience-box::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .experience-box::-webkit-scrollbar-thumb {
+            background-color: #FF78C4;
+            border-radius: 3px;
+        }
+
+        /* Loader */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(30, 30, 47, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            font-size: 1.5rem;
+            z-index: 1000;
+            opacity: 1;
+            transition: opacity 0.5s;
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Mode clair pour le texte */
+        body.light-mode {
+            background: linear-gradient(-45deg, #f0f0f5, #e0e0e5, #d0d0d5, #e0e0e5);
+            color: #333;
+        }
+        
+        body.light-mode h1, 
+        body.light-mode h2, 
+        body.light-mode h3,
+        body.light-mode .skill-title {
+            color: #333;
+        }
+        
+        body.light-mode p,
+        body.light-mode .skill-description {
+            color: #555;
+        }
+        
+        body.light-mode .menu li a {
+            color: #333;
+        }
+        
+        body.light-mode .logo span {
+            color: #222;
+        }
+        
+        body.light-mode .experience-box h2 a {
+            color: #333;
+        }
+        
+        body.light-mode .experience-box h2 a:hover {
+            color: #FF78C4;
+        }
+
+        body.light-mode .skills-container,
+        body.light-mode header,
+        body.light-mode .experience-box {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Animations */
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-10px) rotate(360deg); }
+        }
+
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes slideInLeft {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(0); }
+        }
+
+        @keyframes slideInRight {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(0); }
+        }
+
+        @keyframes vibrate {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+
+        /* Animations pour le bouton CV */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); box-shadow: 0 0 20px rgba(255, 120, 196, 0.5); }
+            100% { transform: scale(1); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+            }
+
+            .intro {
+                max-width: 100%;
+                order: 2;
+            }
+
+            .photo-container {
+                margin-bottom: 30px;
+                order: 1;
+            }
+
+            .skills-container {
+                flex-direction: column;
+            }
+
+            .experience-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .experience-box {
+                width: 80%;
+                margin-bottom: 30px;
+                max-height: none;
+            }
+            
+            .experience-details {
+                display: block;
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Conteneur pour les particules -->
+    <div id="particles"></div>
+
+    <div class="loader" id="loader">Chargement...</div>
+
+    <div class="container">
+        <header>
+            <div class="logo">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" fill="#FF78C4">
+                    <rect x="15" y="5" width="20" height="20" rx="5" fill="#9195F6" />
+                    <circle cx="25" cy="15" r="5" fill="#FF78C4" />
+                    <path d="M20,25 L20,40 Q20,45 15,45" stroke="#FF78C4" stroke-width="2" fill="none" />
+                    <path d="M25,25 L25,45" stroke="#FF78C4" stroke-width="2" fill="none" />
+                    <path d="M30,25 L30,40 Q30,45 35,45" stroke="#FF78C4" stroke-width="2" fill="none" />
+                </svg>
+                <span>Mickaël</span>
+            </div>
+            <nav>
+                <ul class="menu">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="a-propos.html">À propos</a></li>
+                    <li><a href="tous-les-projets.html">Projets</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <button class="dark-mode-toggle">🌙</button>
+        </header>
+
+        <div class="header">
+            <div class="intro">
+                <h1>Bonjour, je m'appelle DJEDJE ELOHIM M.</h1>
+                <p>Je suis un développeur créatif actuellement basé à France, Paris.</p>
+                <div class="badges">
+                    <div class="badge">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M16 18l6-6-6-6"></path>
+                            <path d="M8 6l-6 6 6 6"></path>
+                        </svg>
+                        Developer
+                    </div>
+                    <div class="badge">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                            <path d="M22 4L12 14.01l-3-3"></path>
+                        </svg>
+                        Lead Developer
+                    </div>
+                </div>
+                
+                <button class="cv-button" onclick="window.open('ELOHIM_DJEDJE_CV.pdf', '_blank')">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                        <polyline points="10 9 9 9 8 9"></polyline>
+                    </svg>
+                    Voir mon CV
+                </button>
+            </div>
+            <div class="photo-container">
+                <img src="image/WhatsApp Image 2025-03-20 à 16.46.42_11ca5048.jpg" alt="Photo de profil">
+            </div>
+        </div>
+
+        <div class="skills-container">
+            <div class="skill-card" data-delay="0">
+                <div class="skill-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="16 18 22 12 16 6"></polyline>
+                        <polyline points="8 6 2 12 8 18"></polyline>
+                    </svg>
+                </div>
+                <h3 class="skill-title">Front End</h3>
+                <p class="skill-description">Un étudiant passionné par le front-end, maîtrisant le design et l'UX, crée des interfaces captivantes avec une vision esthétique affirmée.</p>
+            </div>
+            
+            <div class="skill-card" data-delay="200">
+                <div class="skill-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                    </svg>
+                </div>
+                <h3 class="skill-title">Esprit D'équipe</h3>
+                <p class="skill-description">Pour moi, l'esprit d'équipe est bien plus qu'une simple compétence professionnelle. C'est une philosophie qui guide ma manière de travailler et d'interagir avec les autres. Ces collaborations m'ont appris à adapter ma communication, à partager mes connaissances et à apprendre des autres.</p>
+            </div>
+            
+            <div class="skill-card" data-delay="400">
+                <div class="skill-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <circle cx="12" cy="12" r="6"></circle>
+                        <circle cx="12" cy="12" r="2"></circle>
+                    </svg>
+                </div>
+                <h3 class="skill-title">Vision 360°</h3>
+                <p class="skill-description">Je ne me contente pas de résoudre des problèmes à court terme : je m'efforce de comprendre les enjeux sous-jacents et les objectifs à long terme de chaque projet. Que ce soit en développant une application web, en optimisant un processus ou en concevant une expérience utilisateur.</p>
+            </div>
+        </div>
+
+        <h1 class="experience-title">Mon Expérience</h1>
+        <div class="experience-container">
+            <!-- Colonne Expérience Académique (à gauche) -->
+            <div class="experience-box professional" data-href="#">
+                <img src="image/51161923-collège-graduation-cap-icône-concept-de-design-de-l-enseignement-scolaire-à-géométrie-colorée.jpg" alt="Expérience Académique">
+                <h2><a href="#">Expérience Académique</a></h2>
+                
+                <!-- Éléments de CV académique -->
+                <div class="experience-details">
+                    <div class="exp-item">
+                        <h3>Développement web</h3>
+                        <p class="role">Chef de projet, ECE Paris - création et mise en fonctionnement du jeu pacman:</p>
+                        <ul>
+                            <li>Développement d'interfaces web, front et back.</li>
+                            <li>Gestion de la base de données des informations utilisateurs.</li>
+                            <li>Codage avec les langages de programmation C.</li>
+                            <li>Utilisation de la bibliothèque logicielle libre Allegro.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="exp-item">
+                        <h3>Chargée de la partie visible du site web (front-end)</h3>
+                        <p class="role">ECE Paris - création d'une bibliothèque en ligne</p>
+                        <ul>
+                            <li>Création et maintenance de sites web, en utilisant HTML, CSS, JavaScript et PHP.</li>
+                            <li>Optimisation des requêtes SQL et des performances des bases de données(xamps).</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Colonne Expérience Professionnelle (à droite) -->
+            <div class="experience-box academic" data-href="#">
+                <img src="image/concept-recherche-emploi-ligne-groupe-personnes-recherche-emploi-selection-cv-entretiens-via-internet_688351-112.avif" alt="Expérience Professionnelle">
+                <h2><a href="#">Expérience Professionnelle</a></h2>
+                
+                <!-- Éléments de CV professionnel -->
+                <div class="experience-details">
+                    <div class="exp-item">
+                        <h3>Employé polyvalent de restauration</h3>
+                        <p class="role">Mufasa restaurant - Paris - CDI 10/2024 à nos jours</p>
+                        <ul>
+                            <li>Service rapide est gestion de commande</li>
+                            <li>Travail en équipe et respect des règles</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="exp-item">
+                        <h3>Vendeur magasin</h3>
+                        <p class="role">KIABI - Côte d'Ivoire - CDD (2022 - 2023)</p>
+                        <ul>
+                            <li>Mise en rayon selon les techniques de merchandising, étiquetage des produits.</li>
+                            <li>Accueil des clients et identification de leurs besoins pour les orienter vers les produits adaptés.</li>
+                            <li>Accueil et prise en charge des clients afin de les orienter vers les produits adaptés à leurs besoins.</li>
+                            <li>Gestion des stocks et réapprovisionnement des rayons afin d'assurer la disponibilité des articles</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <audio id="hoverSound" src="hover-sound.mp3"></audio>
+    <audio id="clickSound" src="click-sound.mp3"></audio>
+
+    <script>
+        // Gestion du chargement
+        document.addEventListener('DOMContentLoaded', function() {
+            // Masquer le loader après chargement
+            setTimeout(function() {
+                const loader = document.getElementById('loader');
+                loader.classList.add('hidden');
+            }, 1000);
+            
+            // Création dynamique des particules
+            const particlesContainer = document.getElementById('particles');
+            
+            // Créer 50 particules
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Position aléatoire
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                
+                // Taille aléatoire
+                const size = Math.random() * 3 + 1;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                
+                // Animation légèrement différente pour chaque particule
+                particle.style.animationDuration = (Math.random() * 6 + 5) + 's';
+                particle.style.animationDelay = (Math.random() * 5) + 's';
+                
+                particlesContainer.appendChild(particle);
+            }
+            
+            // Animation des cartes de compétences
+            const skillCards = document.querySelectorAll('.skill-card');
+            
+            function animateCards() {
+                skillCards.forEach(card => {
+                    const delay = parseInt(card.getAttribute('data-delay'));
+                    
+                    setTimeout(() => {
+                        card.classList.add('active');
+                    }, delay);
+                });
+            }
+            
+            // Démarrer l'animation après un court délai
+            setTimeout(animateCards, 500);
+            
+            // Animation des boîtes d'expérience
+            const professionalBox = document.querySelector('.professional');
+            const academicBox = document.querySelector('.academic');
+            
+            setTimeout(() => {
+                professionalBox.style.animation = 'slideInLeft 1s forwards, fadeIn 1s forwards';
+                academicBox.style.animation = 'slideInRight 1s forwards, fadeIn 1s forwards';
+            }, 1000);
+            
+            // Gestion des sons et des clics pour les boîtes d'expérience
+            const experienceBoxes = document.querySelectorAll('.experience-box');
+            const hoverSound = document.getElementById('hoverSound');
+            const clickSound = document.getElementById('clickSound');
+            
+            experienceBoxes.forEach(box => {
+                box.addEventListener('mouseenter', function() {
+                    if (hoverSound.readyState >= 2) { // Si le son est chargé
+                        hoverSound.currentTime = 0;
+                        hoverSound.play().catch(e => console.log("Audio play failed:", e));
+                    }
+                });
+                
+                box.addEventListener('click', function() {
+                    if (clickSound.readyState >= 2) { // Si le son est chargé
+                        clickSound.currentTime = 0;
+                        clickSound.play().catch(e => console.log("Audio play failed:", e));
+                    }
+                    
+                    const href = this.getAttribute('data-href');
+                    if (href && href !== '#') {
+                        setTimeout(() => {
+                            window.location.href = href;
+                        }, 300); // Délai pour voir l'animation avant redirection
+                    }
+                });
+            });
+            
+            // Animation pour le bouton CV
+            const cvButton = document.querySelector('.cv-button');
+            
+            // Son lors du clic sur le bouton CV
+            cvButton.addEventListener('click', function() {
+                if (clickSound.readyState >= 2) {
+                    clickSound.currentTime = 0;
+                    clickSound.play().catch(e => console.log("Audio play failed:", e));
+                }
+            });
+            
+            // Fonction pour le toggle mode sombre/clair
+            function setupDarkModeToggle() {
+                const toggle = document.querySelector('.dark-mode-toggle');
+                if (!toggle) return;
+                
+                toggle.addEventListener('click', () => {
+                    if (toggle.textContent === '🌙') {
+                        toggle.textContent = '☀️';
+                        document.body.classList.add('light-mode');
+                        localStorage.setItem('theme', 'light');
+                    } else {
+                        toggle.textContent = '🌙';
+                        document.body.classList.remove('light-mode');
+                        localStorage.setItem('theme', 'dark');
+                    }
+                });
+                
+                // Vérifier le thème enregistré
+                const savedTheme = localStorage.getItem('theme');
+                if (savedTheme === 'light') {
+                    toggle.textContent = '☀️';
+                    document.body.classList.add('light-mode');
+                }
+            }
+            
+            // Exécuter la fonction de toggle mode sombre/clair
+            setupDarkModeToggle();
+            
+            // Animation 3D Tilt pour la photo de profil
+            function setupPhotoAnimation() {
+                const photoContainer = document.querySelector('.photo-container');
+                if (!photoContainer) return;
+                
+                document.addEventListener('mousemove', (e) => {
+                    const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+                    const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+                    photoContainer.style.transform = `perspective(1000px) rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+                });
+                
+                photoContainer.addEventListener('mouseenter', () => {
+                    photoContainer.style.transition = 'none';
+                });
+                
+                photoContainer.addEventListener('mouseleave', () => {
+                    photoContainer.style.transition = 'all 0.5s ease';
+                    photoContainer.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg)';
+                });
+            }
+            
+            // Activer l'animation 3D pour la photo
+            setupPhotoAnimation();
+        });
+    </script>
+</body>
+</html>
