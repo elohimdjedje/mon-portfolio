@@ -1,6 +1,21 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    <!-- Ajoutez ces balises dans la section <head> de chacune de vos pages HTML -->
+
+<!-- Métadonnées essentielles -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<!-- Balises pour améliorer l'affichage mobile -->
+<meta name="theme-color" content="#1e1e2f">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<!-- Preload des polices pour améliorer les performances -->
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio - DJEDJE ELOHIM M.</title>
@@ -56,6 +71,7 @@
             border-radius: 10px;
             padding: 15px 30px;
         }
+
 
         .logo {
             display: flex;
@@ -571,7 +587,215 @@
             50% { transform: scale(1.05); box-shadow: 0 0 20px rgba(255, 120, 196, 0.5); }
             100% { transform: scale(1); }
         }
+/* Styles responsifs généraux à ajouter à votre fichier CSS principal */
 
+/* Variables pour les breakpoints */
+:root {
+    --mobile: 480px;
+    --tablet: 768px;
+    --laptop: 1024px;
+}
+
+/* Styles de base adaptés */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 16px;
+    overflow-x: hidden;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 20px;
+}
+
+/* Header et navigation responsive */
+header nav {
+    position: relative;
+}
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 100;
+}
+
+/* Media Queries */
+@media (max-width: 1024px) {
+    h1 {
+        font-size: 36px;
+    }
+    
+    h2 {
+        font-size: 28px;
+    }
+    
+    .projets-grid, .competences-grid {
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Navigation mobile */
+    .menu-toggle {
+        display: block;
+    }
+    
+    .menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 250px;
+        height: 100vh;
+        background: rgba(30, 30, 47, 0.95);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        transition: right 0.3s ease;
+        z-index: 99;
+        padding: 50px 20px;
+    }
+    
+    .menu.active {
+        right: 0;
+    }
+    
+    /* Ajustements pour la page d'accueil */
+    header .container {
+        flex-direction: column;
+    }
+    
+    header .texte, header .photo {
+        width: 100%;
+        max-width: 100%;
+        text-align: center;
+    }
+    
+    header .photo img {
+        max-width: 80%;
+        margin: 0 auto;
+    }
+    
+    /* Ajustements pour la grille de projets */
+    .projets-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .projet-card.large {
+        grid-column: 1;
+    }
+    
+    /* Ajustements pour la grille de compétences */
+    .competences-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+    
+    /* Page À propos */
+    .header {
+        flex-direction: column-reverse;
+        text-align: center;
+    }
+    
+    .intro {
+        max-width: 100%;
+    }
+    
+    .photo-container {
+        margin: 0 auto 30px;
+    }
+    
+    .skills-container {
+        flex-direction: column;
+    }
+    
+    .badges {
+        justify-content: center;
+    }
+    
+    /* Page Projets */
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Section contact */
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 28px;
+    }
+    
+    h2 {
+        font-size: 22px;
+    }
+    
+    /* Ajustements des compétences */
+    .competences-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Ajustements de la page d'accueil */
+    .bouton {
+        display: block;
+        margin: 15px auto;
+        text-align: center;
+    }
+    
+    /* Ajustements des boîtes d'expérience */
+    .experience-box {
+        width: 90%;
+    }
+    
+    /* Menus plus petits */
+    .menu {
+        width: 100%;
+    }
+    
+    /* Réduit les paddings */
+    .container {
+        padding: 0 15px;
+    }
+    
+    section {
+        padding: 40px 0;
+    }
+    
+    /* Ajuste la taille des icônes sociales */
+    .social-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+    
+    /* Réduit les cercles de compétences */
+    .circle-container {
+        width: 90px;
+        height: 90px;
+    }
+}
+
+/* Correction des animations pour mobile */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
         /* Responsive */
         @media (max-width: 768px) {
             .header {
@@ -925,6 +1149,106 @@
             // Activer l'animation 3D pour la photo
             setupPhotoAnimation();
         });
+    </script>
+    <script>
+        // Code JavaScript à ajouter pour la gestion du menu mobile
+document.addEventListener('DOMContentLoaded', function() {
+    // Créer le bouton de menu hamburger
+    const header = document.querySelector('header nav');
+    if (header) {
+        const menuToggle = document.createElement('button');
+        menuToggle.classList.add('menu-toggle');
+        menuToggle.innerHTML = '☰';
+        header.appendChild(menuToggle);
+        
+        // Récupérer le menu
+        const menu = document.querySelector('.menu');
+        
+        // Ajouter l'écouteur d'événement au bouton
+        menuToggle.addEventListener('click', function() {
+            menu.classList.toggle('active');
+            // Changer l'icône quand le menu est ouvert
+            menuToggle.innerHTML = menu.classList.contains('active') ? '✕' : '☰';
+        });
+        
+        // Fermer le menu quand on clique sur un lien
+        const menuLinks = menu.querySelectorAll('a');
+        menuLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                menu.classList.remove('active');
+                menuToggle.innerHTML = '☰';
+            });
+        });
+    }
+    
+    // Améliorer le comportement tactile pour les cartes de projet
+    const projectCards = document.querySelectorAll('.projet-card, .project-card');
+    
+    projectCards.forEach(card => {
+        card.addEventListener('touchstart', function() {
+            this.classList.add('touch-active');
+        }, {passive: true});
+        
+        card.addEventListener('touchend', function() {
+            setTimeout(() => {
+                this.classList.remove('touch-active');
+            }, 300);
+        }, {passive: true});
+    });
+    
+    // Optimisation des animations pour mobile
+    function checkForMobile() {
+        if (window.matchMedia('(max-width: 768px)').matches) {
+            document.body.classList.add('mobile-view');
+        } else {
+            document.body.classList.remove('mobile-view');
+        }
+    }
+    
+    // Exécuter au chargement et lors du redimensionnement
+    checkForMobile();
+    window.addEventListener('resize', checkForMobile);
+    
+    // Améliorer le défilement sur mobile pour les animations
+    const animatedElements = document.querySelectorAll('.projet-card, .competence, .skill-card, .project-card, .experience-box');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+    
+    animatedElements.forEach(element => {
+        observer.observe(element);
+    });
+    
+    // Correction des cercles de compétences pour mobile
+    const competences = document.querySelectorAll('.competence');
+    
+    competences.forEach(competence => {
+        const pourcentage = competence.getAttribute('data-pourcentage');
+        
+        if (window.matchMedia('(max-width: 480px)').matches) {
+            // Ajuster les animations des cercles sur mobile
+            const leftFill = competence.querySelector('.circle-progress.left .circle-fill');
+            const rightFill = competence.querySelector('.circle-progress.right .circle-fill');
+            
+            if (leftFill && rightFill) {
+                const angle = (pourcentage / 100) * 360;
+                
+                if (angle <= 180) {
+                    rightFill.style.transform = `rotate(${angle}deg)`;
+                } else {
+                    rightFill.style.transform = 'rotate(180deg)';
+                    leftFill.style.transform = `rotate(${angle - 180}deg)`;
+                }
+            }
+        }
+    });
+});
     </script>
 </body>
 </html>
