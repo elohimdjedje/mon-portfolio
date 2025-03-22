@@ -426,7 +426,7 @@
             font-size: 0.9rem;
             font-style: italic;
             margin-bottom: 8px;
-            color: rgba(255, 255, 255, 0.9);
+            color: rgba(0, 0, 0, 0.9);
         }
 
         .exp-item ul {
@@ -436,12 +436,12 @@
         .exp-item li {
             font-size: 0.85rem;
             margin-bottom: 5px;
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(0, 0, 0, 0.8);
         }
 
         /* Style pour les liens dans les titres d'expérience */
         .experience-box h2 a {
-            color: #fff;
+            color: #000000;
             text-decoration: none;
             transition: color 0.3s;
         }
@@ -528,6 +528,42 @@
         body.light-mode .experience-box {
             background-color: rgba(255, 255, 255, 0.2);
         }
+        /* Ajoutez ces styles à votre CSS existant */
+
+/* Styles en mode sombre (par défaut) */
+.exp-item .role {
+    font-size: 0.9rem;
+    font-style: italic;
+    margin-bottom: 8px;
+    color: rgba(255, 255, 255, 0.9); /* Couleur claire pour le mode sombre */
+}
+
+.exp-item li {
+    font-size: 0.85rem;
+    margin-bottom: 5px;
+    color: rgba(255, 255, 255, 0.8); /* Couleur claire pour le mode sombre */
+}
+
+.exp-item h3 {
+    font-size: 1rem;
+    margin-bottom: 5px;
+    color: #FF78C4; /* Gardez la même couleur d'accent */
+}
+
+/* Styles en mode clair */
+body.light-mode .exp-item .role {
+    color: rgba(0, 0, 0, 0.9); /* Couleur foncée pour le mode clair */
+}
+
+body.light-mode .exp-item li {
+    color: rgba(0, 0, 0, 0.8); /* Couleur foncée pour le mode clair */
+}
+
+/* Optionnel: Ajoutez une transition pour un changement plus fluide */
+.exp-item .role,
+.exp-item li {
+    transition: color 0.3s ease;
+}
 
         /* Animations */
         @keyframes float {
