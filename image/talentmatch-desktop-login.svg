@@ -1,0 +1,227 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800">
+  <!-- Définitions et dégradés -->
+  <defs>
+    <radialGradient id="galaxyGradient" cx="50%" cy="50%" r="70%" fx="50%" fy="50%">
+      <stop offset="0%" stop-color="#4A148C" />
+      <stop offset="40%" stop-color="#311B92" />
+      <stop offset="100%" stop-color="#0D0221" />
+    </radialGradient>
+    
+    <linearGradient id="purpleWave" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7C4DFF" />
+      <stop offset="100%" stop-color="#5E35B1" />
+    </linearGradient>
+    
+    <linearGradient id="blueWave" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3D5AFE" />
+      <stop offset="100%" stop-color="#1A237E" />
+    </linearGradient>
+    
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+  
+  <!-- Fond principal galaxie -->
+  <rect width="1200" height="800" fill="url(#galaxyGradient)" />
+  
+  <!-- Étoiles -->
+  <g>
+    <!-- Petites étoiles -->
+    <circle cx="100" cy="100" r="1" fill="white" opacity="0.8" />
+    <circle cx="200" cy="150" r="1" fill="white" opacity="0.8" />
+    <circle cx="300" cy="100" r="1.2" fill="white" opacity="0.8" />
+    <circle cx="400" cy="200" r="1" fill="white" opacity="0.8" />
+    <circle cx="500" cy="150" r="1.3" fill="white" opacity="0.8" />
+    <circle cx="600" cy="100" r="1" fill="white" opacity="0.8" />
+    <circle cx="700" cy="180" r="1.2" fill="white" opacity="0.8" />
+    <circle cx="800" cy="120" r="1" fill="white" opacity="0.8" />
+    <circle cx="900" cy="200" r="1.3" fill="white" opacity="0.8" />
+    <circle cx="1000" cy="150" r="1" fill="white" opacity="0.8" />
+    <circle cx="1100" cy="180" r="1.2" fill="white" opacity="0.8" />
+    <!-- Plus d'étoiles similaires -->
+    <circle cx="120" cy="250" r="1" fill="white" opacity="0.8" />
+    <circle cx="220" cy="300" r="1.2" fill="white" opacity="0.8" />
+    <circle cx="320" cy="280" r="1" fill="white" opacity="0.8" />
+    <circle cx="420" cy="350" r="1.3" fill="white" opacity="0.8" />
+    <circle cx="520" cy="320" r="1" fill="white" opacity="0.8" />
+    <circle cx="620" cy="290" r="1.2" fill="white" opacity="0.8" />
+    <circle cx="720" cy="340" r="1" fill="white" opacity="0.8" />
+    <circle cx="820" cy="310" r="1.3" fill="white" opacity="0.8" />
+    <circle cx="920" cy="280" r="1" fill="white" opacity="0.8" />
+    <circle cx="1020" cy="350" r="1.2" fill="white" opacity="0.8" />
+    <circle cx="1120" cy="330" r="1" fill="white" opacity="0.8" />
+    <circle cx="150" cy="400" r="1.2" fill="white" opacity="0.8" />
+    <circle cx="250" cy="450" r="1" fill="white" opacity="0.8" />
+    <circle cx="350" cy="420" r="1.3" fill="white" opacity="0.8" />
+    <circle cx="450" cy="480" r="1" fill="white" opacity="0.8" />
+    <circle cx="550" cy="440" r="1.2" fill="white" opacity="0.8" />
+    <circle cx="650" cy="500" r="1" fill="white" opacity="0.8" />
+    <circle cx="750" cy="460" r="1.3" fill="white" opacity="0.8" />
+    <circle cx="850" cy="520" r="1" fill="white" opacity="0.8" />
+    <circle cx="950" cy="470" r="1.2" fill="white" opacity="0.8" />
+    <circle cx="1050" cy="510" r="1" fill="white" opacity="0.8" />
+    <circle cx="1150" cy="480" r="1.3" fill="white" opacity="0.8" />
+    <circle cx="170" cy="550" r="1" fill="white" opacity="0.8" />
+    <circle cx="270" cy="580" r="1.3" fill="white" opacity="0.8" />
+    <circle cx="370" cy="530" r="1" fill="white" opacity="0.8" />
+    <circle cx="470" cy="590" r="1.2" fill="white" opacity="0.8" />
+    <circle cx="570" cy="560" r="1" fill="white" opacity="0.8" />
+    <circle cx="670" cy="600" r="1.3" fill="white" opacity="0.8" />
+    <circle cx="770" cy="570" r="1" fill="white" opacity="0.8" />
+    <circle cx="870" cy="620" r="1.2" fill="white" opacity="0.8" />
+    <circle cx="970" cy="580" r="1" fill="white" opacity="0.8" />
+    <circle cx="1070" cy="610" r="1.3" fill="white" opacity="0.8" />
+    <circle cx="1170" cy="590" r="1" fill="white" opacity="0.8" />
+    <circle cx="130" cy="650" r="1.2" fill="white" opacity="0.8" />
+    <circle cx="230" cy="680" r="1" fill="white" opacity="0.8" />
+    <circle cx="330" cy="640" r="1.3" fill="white" opacity="0.8" />
+    <circle cx="430" cy="670" r="1" fill="white" opacity="0.8" />
+    <circle cx="530" cy="650" r="1.2" fill="white" opacity="0.8" />
+    <circle cx="630" cy="690" r="1" fill="white" opacity="0.8" />
+    <circle cx="730" cy="660" r="1.3" fill="white" opacity="0.8" />
+    <circle cx="830" cy="700" r="1" fill="white" opacity="0.8" />
+    <circle cx="930" cy="670" r="1.2" fill="white" opacity="0.8" />
+    <circle cx="1030" cy="690" r="1" fill="white" opacity="0.8" />
+    <circle cx="1130" cy="660" r="1.3" fill="white" opacity="0.8" />
+    
+    <!-- Étoiles brillantes -->
+    <circle cx="150" cy="120" r="2" fill="#a3d5ff" opacity="0.9" filter="url(#glow)" />
+    <circle cx="420" cy="170" r="2.2" fill="#a3d5ff" opacity="0.9" filter="url(#glow)" />
+    <circle cx="600" cy="110" r="1.8" fill="#a3d5ff" opacity="0.9" filter="url(#glow)" />
+    <circle cx="800" cy="190" r="2.1" fill="#a3d5ff" opacity="0.9" filter="url(#glow)" />
+    <circle cx="950" cy="140" r="2" fill="#a3d5ff" opacity="0.9" filter="url(#glow)" />
+    <circle cx="1100" cy="200" r="1.9" fill="#a3d5ff" opacity="0.9" filter="url(#glow)" />
+    <circle cx="250" cy="320" r="2" fill="#a3d5ff" opacity="0.9" filter="url(#glow)" />
+    <circle cx="500" cy="290" r="1.9" fill="#a3d5ff" opacity="0.9" filter="url(#glow)" />
+    <circle cx="720" cy="280" r="2.1" fill="#a3d5ff" opacity="0.9" filter="url(#glow)" />
+    <circle cx="900" cy="350" r="2" fill="#a3d5ff" opacity="0.9" filter="url(#glow)" />
+    <circle cx="1050" cy="320" r="1.9" fill="#a3d5ff" opacity="0.9" filter="url(#glow)" />
+    <circle cx="350" cy="500" r="2" fill="#a3d5ff" opacity="0.9" filter="url(#glow)" />
+    <circle cx="620" cy="580" r="1.9" fill="#a3d5ff" opacity="0.9" filter="url(#glow)" />
+    <circle cx="900" cy="490" r="2.1" fill="#a3d5ff" opacity="0.9" filter="url(#glow)" />
+    <circle cx="1150" cy="550" r="2" fill="#a3d5ff" opacity="0.9" filter="url(#glow)" />
+    <circle cx="400" cy="650" r="1.9" fill="#a3d5ff" opacity="0.9" filter="url(#glow)" />
+    <circle cx="780" cy="680" r="2.1" fill="#a3d5ff" opacity="0.9" filter="url(#glow)" />
+    <circle cx="1000" cy="620" r="2" fill="#a3d5ff" opacity="0.9" filter="url(#glow)" />
+  </g>
+  
+  <!-- Nébuleuses et éléments galactiques décoratifs -->
+  <ellipse cx="300" cy="200" rx="250" ry="180" fill="#9C27B0" opacity="0.1" />
+  <ellipse cx="900" cy="600" rx="280" ry="200" fill="#303F9F" opacity="0.1" />
+  <ellipse cx="600" cy="400" rx="400" ry="300" fill="#7B1FA2" opacity="0.05" />
+  
+  <!-- Navigation -->
+  <rect x="0" y="0" width="1200" height="70" fill="rgba(13, 2, 33, 0.7)" />
+  
+  <!-- Logo et navigation -->
+  <circle cx="60" cy="35" r="25" fill="#7C4DFF" filter="url(#glow)" />
+  <text x="60" y="40" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="white">TM</text>
+  <text x="130" y="40" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#E0E0E0">TalentMatch</text>
+  
+  <text x="850" y="40" font-family="Arial, sans-serif" font-size="14" fill="#CCCCCC">Entreprises</text>
+  <text x="950" y="40" font-family="Arial, sans-serif" font-size="14" fill="#CCCCCC">Offres</text>
+  <text x="1030" y="40" font-family="Arial, sans-serif" font-size="14" fill="#CCCCCC">Candidats</text>
+  <text x="1120" y="40" font-family="Arial, sans-serif" font-size="14" fill="#CCCCCC">Conseils</text>
+  
+  <!-- Partie principale: Interface multi-onglets -->
+  <rect x="150" y="120" width="900" height="600" rx="20" fill="rgba(45, 45, 60, 0.7)" stroke="#7C4DFF" stroke-width="2" />
+  
+  <!-- Section de gauche: Informations -->
+  <rect x="150" y="120" width="350" height="600" rx="20 0 0 20" fill="rgba(90, 60, 140, 0.3)" />
+  
+  <!-- Logo et texte de bienvenue -->
+  <circle cx="325" cy="220" r="50" fill="#7C4DFF" filter="url(#glow)" />
+  <text x="325" y="230" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="white">TM</text>
+  
+  <text x="325" y="300" font-family="Arial, sans-serif" font-size="28" font-weight="bold" text-anchor="middle" fill="white">Bienvenue</text>
+  <text x="325" y="330" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#E0E0E0">sur TalentMatch</text>
+  
+  <text x="325" y="370" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#BBBBBB">Plateforme de recrutement intelligente</text>
+  <text x="325" y="390" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#BBBBBB">basée sur l'IA</text>
+  
+  <text x="325" y="450" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#BBBBBB">• Matching IA précis</text>
+  <text x="325" y="480" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#BBBBBB">• Importation LinkedIn</text>
+  <text x="325" y="510" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#BBBBBB">• Assistance ChatGPT</text>
+  
+  <text x="325" y="570" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#BBBBBB">Pas encore inscrit?</text>
+  <rect x="250" y="590" width="150" height="40" rx="20" fill="#7C4DFF" />
+  <text x="325" y="615" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="white">S'inscrire</text>
+  
+  <!-- Section centrale: Onglets de connexion -->
+  <rect x="500" y="120" width="550" height="600" rx="0 20 20 0" fill="rgba(25, 25, 35, 0.7)" />
+  
+  <!-- Onglets -->
+  <rect x="550" y="150" width="120" height="40" rx="20 20 0 0" fill="#7C4DFF" />
+  <text x="610" y="175" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="white">Connexion</text>
+  
+  <rect x="680" y="150" width="120" height="40" rx="20 20 0 0" fill="rgba(255, 255, 255, 0.1)" />
+  <text x="740" y="175" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#BBBBBB">Recruteur</text>
+  
+  <rect x="810" y="150" width="120" height="40" rx="20 20 0 0" fill="rgba(255, 255, 255, 0.1)" />
+  <text x="870" y="175" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#BBBBBB">Candidat</text>
+  
+  <!-- Formulaire de connexion -->
+  <text x="600" y="240" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#FFFFFF">Connexion à votre compte</text>
+  
+  <!-- Champ Email -->
+  <text x="600" y="290" font-family="Arial, sans-serif" font-size="14" fill="#BBBBBB">Email</text>
+  <rect x="600" y="300" width="350" height="50" rx="10" fill="rgba(255, 255, 255, 0.9)" />
+  <text x="620" y="330" font-family="Arial, sans-serif" font-size="14" fill="#555555">exemple@email.com</text>
+  
+  <!-- Champ Mot de passe -->
+  <text x="600" y="370" font-family="Arial, sans-serif" font-size="14" fill="#BBBBBB">Mot de passe</text>
+  <rect x="600" y="380" width="350" height="50" rx="10" fill="rgba(255, 255, 255, 0.9)" />
+  <text x="620" y="410" font-family="Arial, sans-serif" font-size="14" fill="#555555">••••••••</text>
+  
+  <!-- Option se souvenir et mot de passe oublié -->
+  <circle cx="615" cy="455" r="10" stroke="#7C4DFF" stroke-width="2" fill="none" />
+  <text x="635" y="460" font-family="Arial, sans-serif" font-size="14" fill="#BBBBBB">Se souvenir de moi</text>
+  
+  <text x="870" y="460" font-family="Arial, sans-serif" font-size="14" text-anchor="end" fill="#7C4DFF">Mot de passe oublié?</text>
+  
+  <!-- Bouton de connexion -->
+  <rect x="600" y="490" width="350" height="50" rx="25" fill="#7C4DFF" />
+  <text x="775" y="520" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="white">Se connecter</text>
+  
+  <!-- Séparateur -->
+  <line x1="600" y1="570" x2="950" y2="570" stroke="#444444" stroke-width="1" />
+  <text x="775" y="590" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="#BBBBBB">Ou se connecter avec</text>
+  
+  <!-- Boutons médias sociaux -->
+  <rect x="650" y="610" width="70" height="40" rx="20" fill="#3B5998" />
+  <text x="685" y="635" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="white">Facebook</text>
+  
+  <rect x="740" y="610" width="70" height="40" rx="20" fill="#1DA1F2" />
+  <text x="775" y="635" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="white">Twitter</text>
+  
+  <rect x="830" y="610" width="70" height="40" rx="20" fill="#DB4437" />
+  <text x="865" y="635" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="white">Google</text>
+  
+  <!-- Version alternative: Choix de type d'utilisateur (visible en cliquant sur S'inscrire) -->
+  <rect x="500" y="750" width="550" height="0" fill="none" />
+  <text x="775" y="750" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="white">Je suis...</text>
+  
+  <rect x="650" y="770" width="200" height="0" rx="10" fill="#3D5AFE" />
+  <text x="750" y="770" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="white">Recruteur</text>
+  
+  <rect x="650" y="830" width="200" height="0" rx="10" fill="#7C4DFF" />
+  <text x="750" y="830" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="white">Candidat</text>
+  
+  <!-- Version alternative: Formulaire d'inscription recruteur (visible après choix) -->
+  <rect x="500" y="900" width="550" height="0" fill="none" />
+  <text x="775" y="900" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle" fill="white">Inscription Recruteur</text>
+  
+  <text x="600" y="940" font-family="Arial, sans-serif" font-size="14" fill="#BBBBBB">Nom de l'entreprise</text>
+  <rect x="600" y="950" width="350" height="0" rx="10" fill="rgba(255, 255, 255, 0.9)" />
+  
+  <text x="600" y="1000" font-family="Arial, sans-serif" font-size="14" fill="#BBBBBB">Email professionnel</text>
+  <rect x="600" y="1010" width="350" height="0" rx="10" fill="rgba(255, 255, 255, 0.9)" />
+  
+  <text x="600" y="1060" font-family="Arial, sans-serif" font-size="14" fill="#BBBBBB">Mot de passe</text>
+  <rect x="600" y="1070" width="350" height="0" rx="10" fill="rgba(255, 255, 255, 0.9)" />
+  
+  <rect x="600" y="1120" width="350" height="0" rx="25" fill="#7C4DFF" />
+  <text x="775" y="1120" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="white">Créer mon compte</text>
+</svg>

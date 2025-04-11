@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
+<!-- saved from url=(0045)https://elohimdjedje.github.io/mon-portfolio/ -->
+<html lang="fr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio de Mickaël</title>
     <!-- Ajout de Font Awesome pour les icônes -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./Portfolio de Mickaël_files/all.min.css">
     <style>
         * {
             margin: 0;
@@ -757,6 +757,49 @@ html.is-animating .transition-fade {
             100% { transform: rotate(180deg); }
         }
 
+        /* Responsive */
+        @media (max-width: 768px) {
+            header .container, #a-propos .container {
+                flex-direction: column;
+            }
+
+            header .texte, #a-propos .texte {
+                max-width: 100%;
+                order: 2;
+            }
+
+            header .photo, #a-propos .photo {
+                margin-bottom: 30px;
+                order: 1;
+            }
+
+            .projets-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .projet-card.large {
+                grid-column: span 1;
+            }
+
+            .competences-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .menu {
+                gap: 15px;
+            }
+
+            .competences-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
         /* Styles pour le logo et la nouvelle navigation */
         .logo {
             display: flex;
@@ -884,575 +927,38 @@ html.is-animating .transition-fade {
         h1 {
             animation: glowPulse 3s infinite;
         }
-
-        /* NOUVELLES RÈGLES DE RESPONSIVITÉ */
-
-        /* Règles de responsivité globales */
-        @media (max-width: 1200px) {
-            .container {
-                max-width: 90%;
-            }
-        }
-
-        /* Tablettes et appareils moyens */
-        @media (max-width: 992px) {
-            h1 {
-                font-size: 38px;
-            }
-            
-            h2 {
-                font-size: 30px;
-            }
-            
-            header .container, #a-propos .container {
-                flex-direction: column;
-            }
-            
-            header .texte, #a-propos .texte {
-                max-width: 100%;
-                order: 2;
-            }
-            
-            header .photo, #a-propos .photo {
-                margin-bottom: 30px;
-                order: 1;
-                max-width: 70%;
-                margin: 0 auto 30px;
-            }
-            
-            .projets-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .competences-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
-            }
-            
-            .circle-container {
-                width: 100px;
-                height: 100px;
-            }
-            
-            .contact-grid {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-            
-            .contact-info {
-                text-align: center;
-            }
-            
-            .contact-info p {
-                justify-content: center;
-            }
-        }
-
-        /* Appareils mobiles et petites tablettes */
-        @media (max-width: 768px) {
-            body {
-                padding: 20px 10px;
-            }
-            
-            h1 {
-                font-size: 32px;
-            }
-            
-            h2 {
-                font-size: 26px;
-            }
-            
-            header nav {
-                flex-direction: column;
-                padding: 10px 15px;
-            }
-            
-            .logo {
-                margin-bottom: 15px;
-            }
-            
-            .menu {
-                gap: 15px;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            
-            header .photo, #a-propos .photo {
-                max-width: 90%;
-            }
-            
-            .projets-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .projet-card.large {
-                grid-column: span 1;
-            }
-            
-            .competences-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 15px;
-            }
-            
-            .social-links {
-                gap: 15px;
-            }
-            
-            .social-icon {
-                width: 40px;
-                height: 40px;
-                font-size: 18px;
-            }
-
-            /* Adaptation du menu de navigation pour les mobiles */
-            header .container:first-child {
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
-            }
-            
-            nav {
-                position: relative;
-            }.menu {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                flex-direction: column;
-                background: rgba(30, 30, 50, 0.95);
-                padding: 15px;
-                border-radius: 8px;
-                z-index: 100;
-                gap: 15px;
-                margin-top: 10px;
-                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-            }
-            
-            .menu.active {
-                display: flex;
-                animation: slideDown 0.3s ease forwards;
-            }
-            
-            /* Style pour le bouton menu hamburger */
-            .menu-toggle {
-                display: block;
-                background: none;
-                border: none;
-                color: white;
-                font-size: 24px;
-                cursor: pointer;
-            }
-
-            /* Corrections pour les animations sur mobile */
-            @keyframes floatCard {
-                0% {
-                    transform: translateY(0px) rotate(0deg);
-                }
-                50% {
-                    transform: translateY(-5px) rotate(0.5deg);
-                }
-                100% {
-                    transform: translateY(0px) rotate(0deg);
-                }
-            }
-            
-            .projet-card:hover {
-                animation: floatCard 2s ease infinite;
-                box-shadow: 0 10px 20px rgba(145, 149, 246, 0.4),
-                            0 5px 10px rgba(255, 120, 196, 0.4);
-            }
-
-            /* Fix pour les animations de cercle de compétences */
-            .circle-progress.right .circle-fill,
-            .circle-progress.left .circle-fill {
-                clip-path: unset;
-            }
-        }
-
-        /* Petits appareils mobiles */
-        @media (max-width: 480px) {
-            header nav {
-                padding: 10px;
-            }
-            
-            .logo {
-                font-size: 20px;
-            }
-            
-            .logo svg {
-                width: 30px;
-                height: 30px;
-            }
-            
-            .menu {
-                gap: 10px;
-                font-size: 14px;
-            }
-            
-            h1 {
-                font-size: 28px;
-            }
-            
-            h2 {
-                font-size: 22px;
-            }
-            
-            .sous-titre {
-                font-size: 16px;
-            }
-            
-            .bouton {
-                padding: 10px 20px;
-                font-size: 14px;
-            }
-            
-            .competences-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .circle-container {
-                width: 80px;
-                height: 80px;
-            }
-            
-            .circle-inner {
-                font-size: 18px;
-            }
-            
-            .competence h3 {
-                font-size: 16px;
-            }
-            
-            .contact-form input,
-            .contact-form textarea {
-                padding: 10px;
-            }
-            
-            .social-icon {
-                width: 35px;
-                height: 35px;
-                font-size: 16px;
-            }
-        }
-
-        /* Animations et styles pour le menu mobile */
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .menu-toggle {
-            display: none; /* Masqué par défaut, affiché seulement en mobile via media query */
-            background: linear-gradient(to right, var(--accent-color), var(--accent-color-2));
-            color: white;
-            border: none;
-            border-radius: 5px;
-            padding: 5px 10px;
-            font-size: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .menu-toggle:hover {
-            opacity: 0.9;
-            transform: scale(1.05);
-        }
-
-        /* Gestion des interactions tactiles sur mobile */
-        .projet-card.touch-active {
-            transform: scale(0.98);
-            transition: transform 0.3s ease;
-        }
-
-        .projet-card.touch-active .projet-overlay {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .projet-card.touch-active .projet-tag,
-        .projet-card.touch-active .arrow,
-        .projet-card.touch-active .projet-overlay p {
-            opacity: 1;
-            transform: translateX(0) translateY(0);
-        }
-
-        /* Améliorer les formulaires sur mobile */
-        @media (max-width: 768px) {
-            input, textarea, button {
-                -webkit-appearance: none;
-                border-radius: 8px;
-                font-size: 16px; /* Empêche le zoom automatique sur iOS */
-            }
-            
-            .contact-form input,
-            .contact-form textarea {
-                margin-bottom: 15px;
-                padding: 15px;
-            }
-            
-            .contact-form button {
-                padding: 15px;
-                width: 100%;
-            }
-            
-            /* Espacement pour éviter que le doigt ne cache le texte */
-            .bouton {
-                padding: 12px 25px;
-                margin: 5px 0;
-                display: inline-block;
-            }
-            
-            /* Améliorer la lisibilité du texte sur petit écran */
-            p, .sous-titre {
-                line-height: 1.6;
-            }
-        }
-
-        /* Optimisation des performances sur mobile */
-        @media (max-width: 768px) {
-            /* Réduire la quantité d'animations en arrière-plan */
-            #particles .particle:nth-child(odd) {
-                display: none;
-            }
-            
-            /* Simplifier les transitions */
-            .projet-card {
-                transition: transform 0.3s ease, box-shadow 0.3s ease;
-            }
-            
-            body.mobile-optimized .projet-card:hover {
-                animation: none;
-                transform: translateY(-5px);
-            }
-            
-            /* Optimiser les éléments qui pourraient causer des problèmes de performance */
-            body.mobile-optimized {
-                background-size: 300% 300%;
-                animation: gradientFlow 20s ease infinite;
-            }
-        }
-
-        /* Fix pour iPhone et Safari */
-        @supports (-webkit-touch-callout: none) {
-            /* Styles spécifiques à iOS */
-            .menu-toggle, .bouton, input[type="submit"] {
-                -webkit-tap-highlight-color: transparent;
-            }
-            
-            /* Empêcher le comportement de survol persistant sur iOS */
-            .projet-card:hover::after {
-                opacity: 0;
-            }
-            
-            .projet-card.touch-active::after {
-                opacity: 1;
-            }
-        }
-
-        /* Adaptation des grilles pour différentes tailles d'écran */
-        @media (min-width: 481px) and (max-width: 768px) {
-            .projets-grid {
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            }
-        }
-
-        @media (min-width: 769px) and (max-width: 1024px) {
-            .projets-grid {
-                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            }
-            
-            .competences-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        /* Orientation paysage sur mobile */
-        @media (max-width: 900px) and (orientation: landscape) {
-            body {
-                padding: 10px;
-            }
-            
-            header .photo, #a-propos .photo {
-                max-width: 40%;
-            }
-            
-            .competences-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
-            
-            .circle-container {
-                width: 70px;
-                height: 70px;
-            }
-            
-            .contact-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        /* Style pour appareil mobile détecté via JS */
-        body.mobile-device {
-            /* Réduire certains effets qui pourraient ralentir l'appareil */
-            --reduced-motion: true;
-        }
     </style>
 </head>
-<body>
+<body class="page-transition">
     <!-- Conteneur pour les particules -->
-    <div id="particles"></div>
+    <div id="particles"><div class="particle" style="left: 1.93732%; top: 7.40561%; width: 3.51907px; height: 3.51907px; animation-duration: 5.46831s; animation-delay: 3.71829s;"></div><div class="particle" style="left: 92.8647%; top: 49.4853%; width: 1.03359px; height: 1.03359px; animation-duration: 7.45486s; animation-delay: 4.86906s;"></div><div class="particle" style="left: 64.1586%; top: 91.0032%; width: 3.56263px; height: 3.56263px; animation-duration: 7.37713s; animation-delay: 2.56545s;"></div><div class="particle" style="left: 30.3924%; top: 80.849%; width: 3.25206px; height: 3.25206px; animation-duration: 8.33649s; animation-delay: 2.79146s;"></div><div class="particle" style="left: 26.1151%; top: 6.60711%; width: 2.80084px; height: 2.80084px; animation-duration: 5.81758s; animation-delay: 1.18285s;"></div><div class="particle" style="left: 95.2047%; top: 6.66494%; width: 2.87726px; height: 2.87726px; animation-duration: 6.67339s; animation-delay: 0.614706s;"></div><div class="particle" style="left: 27.4844%; top: 25.1738%; width: 1.57758px; height: 1.57758px; animation-duration: 9.14047s; animation-delay: 2.83214s;"></div><div class="particle" style="left: 53.4051%; top: 58.0888%; width: 2.05331px; height: 2.05331px; animation-duration: 7.73801s; animation-delay: 4.31763s;"></div><div class="particle" style="left: 28.5502%; top: 34.5737%; width: 2.93959px; height: 2.93959px; animation-duration: 9.64159s; animation-delay: 1.50182s;"></div><div class="particle" style="left: 32.6165%; top: 80.1725%; width: 3.48824px; height: 3.48824px; animation-duration: 8.45699s; animation-delay: 3.70082s;"></div><div class="particle" style="left: 19.4202%; top: 82.4595%; width: 2.32485px; height: 2.32485px; animation-duration: 10.8975s; animation-delay: 3.36716s;"></div><div class="particle" style="left: 47.1411%; top: 78.0028%; width: 3.00283px; height: 3.00283px; animation-duration: 6.37788s; animation-delay: 0.339994s;"></div><div class="particle" style="left: 13.2459%; top: 26.5485%; width: 3.28066px; height: 3.28066px; animation-duration: 9.19198s; animation-delay: 1.55819s;"></div><div class="particle" style="left: 94.0949%; top: 65.1315%; width: 2.06872px; height: 2.06872px; animation-duration: 10.0566s; animation-delay: 2.74834s;"></div><div class="particle" style="left: 66.6203%; top: 66.5626%; width: 2.25711px; height: 2.25711px; animation-duration: 8.53278s; animation-delay: 1.25443s;"></div><div class="particle" style="left: 24.3247%; top: 81.0695%; width: 2.42557px; height: 2.42557px; animation-duration: 8.25913s; animation-delay: 2.67899s;"></div><div class="particle" style="left: 87.9282%; top: 22.5143%; width: 3.00652px; height: 3.00652px; animation-duration: 8.88914s; animation-delay: 0.103283s;"></div><div class="particle" style="left: 55.8032%; top: 43.6964%; width: 3.96652px; height: 3.96652px; animation-duration: 9.22359s; animation-delay: 3.05278s;"></div><div class="particle" style="left: 69.0101%; top: 81.353%; width: 3.63738px; height: 3.63738px; animation-duration: 6.87274s; animation-delay: 4.97526s;"></div><div class="particle" style="left: 42.9044%; top: 43.4266%; width: 2.56776px; height: 2.56776px; animation-duration: 9.02408s; animation-delay: 4.2139s;"></div><div class="particle" style="left: 25.7288%; top: 37.3093%; width: 3.86752px; height: 3.86752px; animation-duration: 10.7585s; animation-delay: 3.12159s;"></div><div class="particle" style="left: 6.00858%; top: 19.7877%; width: 1.55484px; height: 1.55484px; animation-duration: 9.21355s; animation-delay: 2.08671s;"></div><div class="particle" style="left: 22.2939%; top: 48.435%; width: 3.9596px; height: 3.9596px; animation-duration: 6.00946s; animation-delay: 3.74675s;"></div><div class="particle" style="left: 63.3684%; top: 61.0979%; width: 2.9456px; height: 2.9456px; animation-duration: 6.30116s; animation-delay: 3.15711s;"></div><div class="particle" style="left: 87.1325%; top: 31.7701%; width: 3.5748px; height: 3.5748px; animation-duration: 10.7285s; animation-delay: 0.253224s;"></div><div class="particle" style="left: 6.54817%; top: 79.4714%; width: 1.38047px; height: 1.38047px; animation-duration: 7.32367s; animation-delay: 1.16027s;"></div><div class="particle" style="left: 26.1354%; top: 87.4591%; width: 2.53232px; height: 2.53232px; animation-duration: 6.79814s; animation-delay: 2.75568s;"></div><div class="particle" style="left: 30.0267%; top: 41.8815%; width: 2.69202px; height: 2.69202px; animation-duration: 6.00993s; animation-delay: 2.59938s;"></div><div class="particle" style="left: 50.4182%; top: 93.012%; width: 1.46669px; height: 1.46669px; animation-duration: 9.1528s; animation-delay: 2.33024s;"></div><div class="particle" style="left: 73.5709%; top: 61.8621%; width: 1.3135px; height: 1.3135px; animation-duration: 5.61101s; animation-delay: 2.05944s;"></div><div class="particle" style="left: 48.3543%; top: 86.4314%; width: 1.59811px; height: 1.59811px; animation-duration: 10.6715s; animation-delay: 0.944215s;"></div><div class="particle" style="left: 55.7644%; top: 81.8542%; width: 1.81669px; height: 1.81669px; animation-duration: 5.43006s; animation-delay: 3.93284s;"></div><div class="particle" style="left: 31.2343%; top: 39.671%; width: 1.4075px; height: 1.4075px; animation-duration: 10.2973s; animation-delay: 1.16564s;"></div><div class="particle" style="left: 44.4071%; top: 9.50832%; width: 3.56158px; height: 3.56158px; animation-duration: 8.15519s; animation-delay: 2.69874s;"></div><div class="particle" style="left: 82.9739%; top: 40.9091%; width: 1.36968px; height: 1.36968px; animation-duration: 5.54346s; animation-delay: 2.31486s;"></div><div class="particle" style="left: 46.0006%; top: 91.9448%; width: 2.373px; height: 2.373px; animation-duration: 9.16286s; animation-delay: 0.388425s;"></div><div class="particle" style="left: 71.0152%; top: 42.0538%; width: 1.57214px; height: 1.57214px; animation-duration: 5.94721s; animation-delay: 2.7119s;"></div><div class="particle" style="left: 85.5246%; top: 35.3054%; width: 3.82808px; height: 3.82808px; animation-duration: 7.3408s; animation-delay: 1.13066s;"></div><div class="particle" style="left: 83.2394%; top: 72.5516%; width: 3.41143px; height: 3.41143px; animation-duration: 5.34209s; animation-delay: 2.40361s;"></div><div class="particle" style="left: 75.3934%; top: 31.4045%; width: 1.06426px; height: 1.06426px; animation-duration: 9.52268s; animation-delay: 0.733881s;"></div><div class="particle" style="left: 11.2197%; top: 46.7307%; width: 2.13992px; height: 2.13992px; animation-duration: 6.36838s; animation-delay: 4.41922s;"></div><div class="particle" style="left: 93.89%; top: 89.6445%; width: 2.68762px; height: 2.68762px; animation-duration: 8.15857s; animation-delay: 2.38471s;"></div><div class="particle" style="left: 99.4844%; top: 82.5206%; width: 3.0318px; height: 3.0318px; animation-duration: 8.42798s; animation-delay: 0.344077s;"></div><div class="particle" style="left: 39.6786%; top: 46.618%; width: 2.59221px; height: 2.59221px; animation-duration: 10.0821s; animation-delay: 0.230311s;"></div><div class="particle" style="left: 67.7277%; top: 76.0837%; width: 3.80097px; height: 3.80097px; animation-duration: 8.15181s; animation-delay: 1.36602s;"></div><div class="particle" style="left: 5.19435%; top: 89.6545%; width: 1.69408px; height: 1.69408px; animation-duration: 6.32372s; animation-delay: 2.88783s;"></div><div class="particle" style="left: 39.2616%; top: 15.1046%; width: 3.49197px; height: 3.49197px; animation-duration: 5.02757s; animation-delay: 0.902508s;"></div><div class="particle" style="left: 47.949%; top: 77.7314%; width: 2.75756px; height: 2.75756px; animation-duration: 6.14493s; animation-delay: 0.750005s;"></div><div class="particle" style="left: 28.3915%; top: 30.8636%; width: 2.54714px; height: 2.54714px; animation-duration: 9.32295s; animation-delay: 4.27052s;"></div><div class="particle" style="left: 42.6093%; top: 31.59%; width: 3.7801px; height: 3.7801px; animation-duration: 10.2474s; animation-delay: 3.79803s;"></div></div>
 
     <!-- Section Accueil -->
     <header id="accueil">
         <div class="container">
             <div class="logo">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" fill="#FF78C4">
-                    <rect x="15" y="5" width="20" height="20" rx="5" fill="#9195F6" />
-                    <circle cx="25" cy="15" r="5" fill="#FF78C4" />
-                    <path d="M20,25 L20,40 Q20,45 15,45" stroke="#FF78C4" stroke-width="2" fill="none" />
-                    <path d="M25,25 L25,45" stroke="#FF78C4" stroke-width="2" fill="none" />
-                    <path d="M30,25 L30,40 Q30,45 35,45" stroke="#FF78C4" stroke-width="2" fill="none" />
-                </svg>
-                <span>Mickaël</span>
-            </div>
-            <nav>
-                <!-- Bouton menu hamburger visible uniquement sur mobile -->
-                <button class="menu-toggle" aria-label="Menu de navigation">☰</button>
-                <ul class="menu">
-                    <li><a href="#accueil">Accueil</a></li>
-                    <li><a href="a-propos.html">À propos</a></li>
-                    <li><a href="tous-les-projets.html">Projets</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-            <button class="dark-mode-toggle">🌙</button>
-        </div>
-        <div class="container">
-            <div class="texte">
-                <h1>Mickaël Elohim D</h1>
-                <p>Do You Know Me?</p>
-                <ul>
-                    <li><span class="check">✓</span> Je suis Mickaël ED</li>
-                </ul>
-            
-                <p>En tant qu'étudiant développeur d'applications, je combine une solide base technique acquise en formation avec une réelle passion pour l'innovation. Mon approche proactive et ma capacité à m'adapter rapidement aux nouveaux langages et outils font de moi un atout pour votre équipe. En alternance, je m'engage à contribuer activement à vos projets tout en approfondissant mes compétences, créant ainsi une relation gagnant-gagnant pour votre entreprise et mon parcours professionnel.</p>
-                <a href="#contact" class="bouton">Contactez-moi</a>
-            </div>
-            <div class="photo">
-                <img src="image/moi2.jpg" alt="Photo de Mickaël">
-            </div>
-        </div>
-    </header>
-
-    <!-- Section À propos -->
-    <section id="a-propos">
-        <div class="container">
-            <div class="photo">
-                <img src="image/WhatsApp Image 2025-03-20 à 21.30.02_86cdb308.jpg" alt="Photo À propos">
-            </div>
-            <div class="texte">
-                <h2>À propos de moi</h2>
-                <p class="sous-titre">L'excellence, une ligne de code à la fois :</p>
-                <p>Passionné par le développement, je m'efforce de repousser mes limites et d'améliorer mes compétences à chaque projet. Mon objectif ? Transformer des idées en applications fonctionnelles et innovantes.</p>
-                <a href="a-propos.html" class="bouton">a propos de moi</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section Projets -->
-    <section id="projets">
-        <div class="container">
-            <h2>Mes derniers projets</h2>
-            <p class="sous-titre">Découvrez mes derniers projets, réalisés pour des projets académiques ou pour moi-même.</p>
-            
-            <div class="projets-grid">
-                <div class="projet-card" style="--i:0">
-                    <div class="projet-image">
-                        <img src="image/pac-man-jeu-video.jpg" alt="Projet PacMan">
-                        <div class="projet-overlay">
-                            <span class="projet-tag">PacMan</span>
-                            <span class="arrow">↓</span>
-                            <p>Un jeu PacMan classique avec des fonctionnalités modernes.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="projet-card large" style="--i:1">
-                    <div class="projet-image">
-                        <img src="image/IMG_0669 - Copie.jpg" alt="Bibliothèque en ligne">
-                        <div class="projet-overlay">
-                            <span class="projet-tag">bibliothèque en ligne</span>
-                            <span class="arrow">↓</span>
-                            <p>Système de gestion de bibliothèque avec interface intuitive.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="projet-card large" style="--i:2">
-                    <div class="projet-image">
-                        <img src="image/portfolio.webp" alt="Portfolio">
-                        <div class="projet-overlay">
-                            <span class="projet-tag">portfolio</span>
-                            <span class="arrow">↓</span>
-                            <p>Site portfolio responsive avec design moderne.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="projet-card" style="--i:3">
-                    <div class="projet-image">
-                        <img src="image/encours.jpg" alt="Projet en cours">
-                        <div class="projet-overlay">
-                            <span class="projet-tag">projet en cours...</span>
-                            <span class="arrow">↓</span>
-                            <p>Restez à l'affût pour découvrir mon prochain projet.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="all-projects">
-                <a href="tous-les-projets.html" class="bouton">Tous les projets <span class="arrow">→</span></a>
-            </div>
-        </div>
-    </section>
-</head>
-<body>
-    <!-- Conteneur pour les particules -->
-    <div id="particles"></div>
-
-    <!-- Section Accueil -->
-    <header id="accueil">
-        <div class="container">
-            <div class="logo">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" fill="#FF78C4">
-                    <rect x="15" y="5" width="20" height="20" rx="5" fill="#9195F6" />
-                    <circle cx="25" cy="15" r="5" fill="#FF78C4" />
-                    <path d="M20,25 L20,40 Q20,45 15,45" stroke="#FF78C4" stroke-width="2" fill="none" />
-                    <path d="M25,25 L25,45" stroke="#FF78C4" stroke-width="2" fill="none" />
-                    <path d="M30,25 L30,40 Q30,45 35,45" stroke="#FF78C4" stroke-width="2" fill="none" />
+                    <rect x="15" y="5" width="20" height="20" rx="5" fill="#9195F6"></rect>
+                    <circle cx="25" cy="15" r="5" fill="#FF78C4"></circle>
+                    <path d="M20,25 L20,40 Q20,45 15,45" stroke="#FF78C4" stroke-width="2" fill="none"></path>
+                    <path d="M25,25 L25,45" stroke="#FF78C4" stroke-width="2" fill="none"></path>
+                    <path d="M30,25 L30,40 Q30,45 35,45" stroke="#FF78C4" stroke-width="2" fill="none"></path>
                 </svg>
                 <span>Mickaël</span>
             </div>
             <nav>
                 <ul class="menu">
-                    <li><a href="#accueil">Accueil</a></li>
-                    <li><a href="a-propos.html">À propos</a></li>
-                    <li><a href="tous-les-projets.html">Projets</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="https://elohimdjedje.github.io/mon-portfolio/#accueil">Accueil</a></li>
+                    <li><a href="https://elohimdjedje.github.io/mon-portfolio/a-propos.html">À propos</a></li>
+                    <li><a href="https://elohimdjedje.github.io/mon-portfolio/tous-les-projets.html">Projets</a></li>
+                    <li><a href="https://elohimdjedje.github.io/mon-portfolio/#contact">Contact</a></li>
                 </ul>
             </nav>
             <button class="dark-mode-toggle">🌙</button>
         </div>
         <div class="container">
-            <div class="texte">
-                <h1>Mickaël Elohim D</h1>
+            <div class="texte visible">
+                <h1><span style="display: inline-block; transition: transform 0.5s, color 0.5s;">M</span><span style="display: inline-block; transition: transform 0.5s 0.05s, color 0.5s;">i</span><span style="display: inline-block; transition: transform 0.5s 0.1s, color 0.5s;">c</span><span style="display: inline-block; transition: transform 0.5s 0.15s, color 0.5s;">k</span><span style="display: inline-block; transition: transform 0.5s 0.2s, color 0.5s;">a</span><span style="display: inline-block; transition: transform 0.5s 0.25s, color 0.5s;">ë</span><span style="display: inline-block; transition: transform 0.5s 0.3s, color 0.5s;">l</span><span style="display: inline-block; transition: transform 0.5s 0.35s, color 0.5s;"> </span><span style="display: inline-block; transition: transform 0.5s 0.4s, color 0.5s;">E</span><span style="display: inline-block; transition: transform 0.5s 0.45s, color 0.5s;">l</span><span style="display: inline-block; transition: transform 0.5s 0.5s, color 0.5s;">o</span><span style="display: inline-block; transition: transform 0.5s 0.55s, color 0.5s;">h</span><span style="display: inline-block; transition: transform 0.5s 0.6s, color 0.5s;">i</span><span style="display: inline-block; transition: transform 0.5s 0.65s, color 0.5s;">m</span><span style="display: inline-block; transition: transform 0.5s 0.7s, color 0.5s;"> </span><span style="display: inline-block; transition: transform 0.5s 0.75s, color 0.5s;">D</span></h1>
                 <p>Do You Know Me?</p>
                 <ul>
                     <li><span class="check">✓</span> Je suis Mickaël ED</li>
@@ -1460,75 +966,75 @@ html.is-animating .transition-fade {
                 </ul>
             
                 <p>En tant qu'étudiant développeur d'applications, je combine une solide base technique acquise en formation avec une réelle passion pour l'innovation. Mon approche proactive et ma capacité à m'adapter rapidement aux nouveaux langages et outils font de moi un atout pour votre équipe. En alternance, je m'engage à contribuer activement à vos projets tout en approfondissant mes compétences, créant ainsi une relation gagnant-gagnant pour votre entreprise et mon parcours professionnel.</p>
-                <a href="#contact" class="bouton">Contactez-moi</a>
+                <a href="https://elohimdjedje.github.io/mon-portfolio/#contact" class="bouton visible">Contactez-moi</a>
             </div>
-            <div class="photo">
-                <img src="image/moi2.jpg" alt="Photo de Mickaël">
+            <div class="photo visible">
+                <img src="./Portfolio de Mickaël_files/moi2.jpg" alt="Photo de Mickaël">
             </div>
         </div>
     </header>
 
     <!-- Section À propos -->
-    <section id="a-propos">
+    <section id="a-propos" style="opacity: 1; transform: translateY(0px); transition: opacity 1s, transform 1s;">
         <div class="container">
-            <div class="photo">
-                <img src="image/WhatsApp Image 2025-03-20 à 21.30.02_86cdb308.jpg" alt="Photo À propos">
+            <div class="photo visible">
+                <img src="./Portfolio de Mickaël_files/WhatsApp Image 2025-03-20 à 21.30.02_86cdb308.jpg" alt="Photo À propos">
             </div>
-            <div class="texte">
+            <div class="texte visible">
                 <h2>À propos de moi</h2>
                 <p class="sous-titre">L'excellence, une ligne de code à la fois :</p>
                 <p>Passionné par le développement, je m'efforce de repousser mes limites et d'améliorer mes compétences à chaque projet. Mon objectif ? Transformer des idées en applications fonctionnelles et innovantes.</p>
-                <a href="a-propos.html" class="bouton">a propos de moi</a>
+                <a href="https://elohimdjedje.github.io/mon-portfolio/a-propos.html" class="bouton visible">a propos de moi</a>
             </div>
         </div>
     </section>
 
     <!-- Section Projets -->
-    <section id="projets">
+    <section id="projets" style="opacity: 1; transform: translateY(0px); transition: opacity 1s, transform 1s;">
         <div class="container">
             <h2>Mes derniers projets</h2>
             <p class="sous-titre">Découvrez mes derniers projets, réalisés pour des projets académiques ou pour moi-même.</p>
             
             <div class="projets-grid">
-                <div class="projet-card" style="--i:0">
+                <div class="projet-card animate visible" style="--i: 0; animation-delay: 0s; opacity: 1;">
                     <div class="projet-image">
-                        <img src="image/pac-man-jeu-video.jpg" alt="Projet PacMan">
-                        <div class="projet-overlay">
-                            <span class="projet-tag">PacMan</span>
-                            <span class="arrow">↓</span>
+                        <img src="./Portfolio de Mickaël_files/pac-man-jeu-video.jpg" alt="Projet PacMan">
+                        <div class="projet-overlay animate" style="animation-delay: 0.1s;">
+                            <span class="projet-tag animate" style="animation-delay: 0.2s;">PacMan</span>
+                            <span class="arrow animate" style="animation-delay: 0.3s;">↓</span>
                             <p>Un jeu PacMan classique avec des fonctionnalités modernes.</p>
                         </div>
                     </div>
                 </div>
                 
-                <div class="projet-card large" style="--i:1">
+                <div class="projet-card large animate visible" style="--i: 1; animation-delay: 0.4s; opacity: 1;">
                     <div class="projet-image">
-                        <img src="image/IMG_0669 - Copie.jpg" alt="Bibliothèque en ligne">
-                        <div class="projet-overlay">
-                            <span class="projet-tag">bibliothèque en ligne</span>
-                            <span class="arrow">↓</span>
+                        <img src="./Portfolio de Mickaël_files/IMG_0669 - Copie.jpg" alt="Bibliothèque en ligne">
+                        <div class="projet-overlay animate" style="animation-delay: 0.5s;">
+                            <span class="projet-tag animate" style="animation-delay: 0.6s;">bibliothèque en ligne</span>
+                            <span class="arrow animate" style="animation-delay: 0.7s;">↓</span>
                             <p>Système de gestion de bibliothèque avec interface intuitive.</p>
                         </div>
                     </div>
                 </div>
                 
-                <div class="projet-card large" style="--i:2">
+                <div class="projet-card large animate visible" style="--i: 2; animation-delay: 0.8s; opacity: 1;">
                     <div class="projet-image">
-                        <img src="image/portfolio.webp" alt="Portfolio">
-                        <div class="projet-overlay">
-                            <span class="projet-tag">portfolio</span>
-                            <span class="arrow">↓</span>
+                        <img src="./Portfolio de Mickaël_files/portfolio.webp" alt="Portfolio">
+                        <div class="projet-overlay animate" style="animation-delay: 0.9s;">
+                            <span class="projet-tag animate" style="animation-delay: 1s;">portfolio</span>
+                            <span class="arrow animate" style="animation-delay: 1.1s;">↓</span>
                             <p>Site portfolio responsive avec design moderne.</p>
                         </div>
                     </div>
                 </div>
                 
-                <div class="projet-card" style="--i:3">
+                <div class="projet-card animate visible" style="--i: 3; animation-delay: 1.2s; opacity: 1;">
                     <div class="projet-image">
-                        <img src="image/encours.jpg" alt="Projet en cours">
-                        <div class="projet-overlay">
-                            <span class="projet-tag">projet en cours...</span>
-                            <span class="arrow">↓</span>
+                        <img src="./Portfolio de Mickaël_files/encours.jpg" alt="Projet en cours">
+                        <div class="projet-overlay animate" style="animation-delay: 1.3s;">
+                            <span class="projet-tag animate" style="animation-delay: 1.4s;">projet en cours...</span>
+                            <span class="arrow animate" style="animation-delay: 1.5s;">↓</span>
                             <p>Restez à l'affût pour découvrir mon prochain projet.</p>
                         </div>
                     </div>
@@ -1536,26 +1042,26 @@ html.is-animating .transition-fade {
             </div>
             
             <div class="all-projects">
-                <a href="tous-les-projets.html" class="bouton">Tous les projets <span class="arrow">→</span></a>
+                <a href="https://elohimdjedje.github.io/mon-portfolio/tous-les-projets.html" class="bouton">Tous les projets <span class="arrow animate" style="animation-delay: 1.6s;">→</span></a>
             </div>
         </div>
     </section>
 
     <!-- Section Compétences -->
-    <section id="competences">
+    <section id="competences" style="opacity: 1; transform: translateY(0px); transition: opacity 1s, transform 1s;">
         <div class="container">
             <h2>Mes Compétences</h2>
             <p class="sous-titre">Découvrez mes compétences techniques</p>
             <div class="competences-grid">
                 <!-- HTML -->
-                <div class="competence html" data-pourcentage="90">
+                <div class="competence html visible" data-pourcentage="90">
                     <div class="circle-container">
                         <div class="circle-bg"></div>
                         <div class="circle-progress left">
-                            <div class="circle-fill"></div>
+                            <div class="circle-fill" style="transform: rotate(144deg);"></div>
                         </div>
                         <div class="circle-progress right">
-                            <div class="circle-fill"></div>
+                            <div class="circle-fill" style="transform: rotate(180deg);"></div>
                         </div>
                         <div class="circle-inner">90%</div>
                     </div>
@@ -1563,14 +1069,14 @@ html.is-animating .transition-fade {
                 </div>
                 
                 <!-- CSS -->
-                <div class="competence css" data-pourcentage="80">
+                <div class="competence css visible" data-pourcentage="80">
                     <div class="circle-container">
                         <div class="circle-bg"></div>
                         <div class="circle-progress left">
-                            <div class="circle-fill"></div>
+                            <div class="circle-fill" style="transform: rotate(108deg);"></div>
                         </div>
                         <div class="circle-progress right">
-                            <div class="circle-fill"></div>
+                            <div class="circle-fill" style="transform: rotate(180deg);"></div>
                         </div>
                         <div class="circle-inner">80%</div>
                     </div>
@@ -1578,14 +1084,14 @@ html.is-animating .transition-fade {
                 </div>
                 
                 <!-- PHP -->
-                <div class="competence php" data-pourcentage="75">
+                <div class="competence php visible" data-pourcentage="75">
                     <div class="circle-container">
                         <div class="circle-bg"></div>
                         <div class="circle-progress left">
-                            <div class="circle-fill"></div>
+                            <div class="circle-fill" style="transform: rotate(90deg);"></div>
                         </div>
                         <div class="circle-progress right">
-                            <div class="circle-fill"></div>
+                            <div class="circle-fill" style="transform: rotate(180deg);"></div>
                         </div>
                         <div class="circle-inner">75%</div>
                     </div>
@@ -1593,14 +1099,14 @@ html.is-animating .transition-fade {
                 </div>
                 
                 <!-- Python -->
-                <div class="competence python" data-pourcentage="60">
+                <div class="competence python visible" data-pourcentage="60">
                     <div class="circle-container">
                         <div class="circle-bg"></div>
                         <div class="circle-progress left">
-                            <div class="circle-fill"></div>
+                            <div class="circle-fill" style="transform: rotate(36deg);"></div>
                         </div>
                         <div class="circle-progress right">
-                            <div class="circle-fill"></div>
+                            <div class="circle-fill" style="transform: rotate(180deg);"></div>
                         </div>
                         <div class="circle-inner">60%</div>
                     </div>
@@ -1608,14 +1114,14 @@ html.is-animating .transition-fade {
                 </div>
                 
                 <!-- JavaScript -->
-                <div class="competence javascript" data-pourcentage="50">
+                <div class="competence javascript visible" data-pourcentage="50">
                     <div class="circle-container">
                         <div class="circle-bg"></div>
                         <div class="circle-progress left">
-                            <div class="circle-fill"></div>
+                            <div class="circle-fill" style="transform: rotate(0deg);"></div>
                         </div>
                         <div class="circle-progress right">
-                            <div class="circle-fill"></div>
+                            <div class="circle-fill" style="transform: rotate(180deg);"></div>
                         </div>
                         <div class="circle-inner">50%</div>
                     </div>
@@ -1623,14 +1129,14 @@ html.is-animating .transition-fade {
                 </div>
                 
                 <!-- Java -->
-                <div class="competence java" data-pourcentage="25">
+                <div class="competence java visible" data-pourcentage="25">
                     <div class="circle-container">
                         <div class="circle-bg"></div>
                         <div class="circle-progress left">
-                            <div class="circle-fill"></div>
+                            <div class="circle-fill" style="transform: rotate(0deg);"></div>
                         </div>
                         <div class="circle-progress right">
-                            <div class="circle-fill"></div>
+                            <div class="circle-fill" style="transform: rotate(90deg);"></div>
                         </div>
                         <div class="circle-inner">25%</div>
                     </div>
@@ -1638,14 +1144,14 @@ html.is-animating .transition-fade {
                 </div>
                 
                 <!-- Base de données -->
-                <div class="competence db" data-pourcentage="80">
+                <div class="competence db visible" data-pourcentage="80">
                     <div class="circle-container">
                         <div class="circle-bg"></div>
                         <div class="circle-progress left">
-                            <div class="circle-fill"></div>
+                            <div class="circle-fill" style="transform: rotate(108deg);"></div>
                         </div>
                         <div class="circle-progress right">
-                            <div class="circle-fill"></div>
+                            <div class="circle-fill" style="transform: rotate(180deg);"></div>
                         </div>
                         <div class="circle-inner">80%</div>
                     </div>
@@ -1653,14 +1159,14 @@ html.is-animating .transition-fade {
                 </div>
                 
                 <!-- WordPress -->
-                <div class="competence wordpress" data-pourcentage="50">
+                <div class="competence wordpress visible" data-pourcentage="50">
                     <div class="circle-container">
                         <div class="circle-bg"></div>
                         <div class="circle-progress left">
-                            <div class="circle-fill"></div>
+                            <div class="circle-fill" style="transform: rotate(0deg);"></div>
                         </div>
                         <div class="circle-progress right">
-                            <div class="circle-fill"></div>
+                            <div class="circle-fill" style="transform: rotate(180deg);"></div>
                         </div>
                         <div class="circle-inner">50%</div>
                     </div>
@@ -1668,14 +1174,14 @@ html.is-animating .transition-fade {
                 </div>
                 
                 <!-- Wix -->
-                <div class="competence wix" data-pourcentage="25">
+                <div class="competence wix visible" data-pourcentage="25">
                     <div class="circle-container">
                         <div class="circle-bg"></div>
                         <div class="circle-progress left">
-                            <div class="circle-fill"></div>
+                            <div class="circle-fill" style="transform: rotate(0deg);"></div>
                         </div>
                         <div class="circle-progress right">
-                            <div class="circle-fill"></div>
+                            <div class="circle-fill" style="transform: rotate(90deg);"></div>
                         </div>
                         <div class="circle-inner">25%</div>
                     </div>
@@ -1686,33 +1192,33 @@ html.is-animating .transition-fade {
     </section>
 
     <!-- Section Contact -->
-    <section id="contact">
+    <section id="contact" style="opacity: 1; transform: translateY(0px); transition: opacity 1s, transform 1s;">
         <div class="container">
-            <h2>Contact</h2>
-            <div class="contact-grid">
-                <div class="contact-info">
+            <h2 class="visible">Contact</h2>
+            <div class="contact-grid visible">
+                <div class="contact-info visible">
                     <h3>Coordonnées</h3>
                     <p><i class="fas fa-map-marker-alt"></i> 23 Rue du 4 Septembre, 72000 Le Mans</p>
                     <p><i class="fas fa-phone"></i> +33 6 69 17 79 83</p>
                     <p><i class="fas fa-envelope"></i> mickaeldjedje7@gmail.com</p>
                 </div>
-                <div class="contact-form">
+                <div class="contact-form visible">
                     <h3>Envoyez un message</h3>
-                    <form action="#" method="post">
+                    <form action="https://elohimdjedje.github.io/mon-portfolio/#" method="post">
                         <label for="nom">Nom :</label>
-                        <input type="text" id="nom" name="nom" required>
+                        <input type="text" id="nom" name="nom" required="">
                         <label for="email">Email :</label>
-                        <input type="email" id="email" name="email" required>
+                        <input type="email" id="email" name="email" required="">
                         <label for="message">Message :</label>
-                        <textarea id="message" name="message" required></textarea>
+                        <textarea id="message" name="message" required=""></textarea>
                         <button type="submit">Envoyer</button>
                     </form>
                 </div>
             </div>
-            <div class="social-links">
+            <div class="social-links visible">
                 <a href="https://www.linkedin.com/in/elohim-mickael-djedje-1ba875330/" class="social-icon"><i class="fab fa-linkedin"></i></a>
                 <a href="https://github.com/elohimdjedje" class="social-icon"><i class="fab fa-github"></i></a>
-                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="https://elohimdjedje.github.io/mon-portfolio/#" class="social-icon"><i class="fab fa-twitter"></i></a>
             </div>
         </div>
     </section>
@@ -2111,5 +1617,5 @@ const observer = new IntersectionObserver((entries) => {
             });
         });
     </script>
-</body>
-</html>
+
+</body></html>
