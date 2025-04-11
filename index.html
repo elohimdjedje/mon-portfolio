@@ -963,18 +963,60 @@ html.is-animating .transition-fade {
             }
             
             header nav {
-                flex-direction: column;
-                padding: 10px 15px;
+                position: relative;
+                flex-direction: row;
+                justify-content: space-between;
+                padding: 15px;
+                align-items: center;
             }
             
             .logo {
-                margin-bottom: 15px;
+                margin-bottom: 0;
+                font-size: 20px;
+            }
+            
+            /* Style pour le bouton menu hamburger sur mobile */
+            .menu-toggle {
+                display: block;
+                background: none;
+                border: none;
+                color: white;
+                font-size: 26px;
+                cursor: pointer;
+                margin-left: auto;
+                margin-right: 20px;
+                z-index: 50;
             }
             
             .menu {
-                gap: 15px;
-                flex-wrap: wrap;
-                justify-content: center;
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                flex-direction: column;
+                background: rgba(30, 30, 50, 0.95);
+                backdrop-filter: blur(10px);
+                border-radius: 10px;
+                padding: 20px;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+                z-index: 40;
+                text-align: center;
+            }
+            
+            .menu.active {
+                display: flex;
+                animation: fadeIn 0.3s forwards;
+            }
+            
+            .menu li {
+                margin: 10px 0;
+            }
+            
+            .menu li a {
+                display: block;
+                padding: 10px;
+                font-size: 18px;
             }
             
             header .photo, #a-propos .photo {
@@ -1004,46 +1046,6 @@ html.is-animating .transition-fade {
                 font-size: 18px;
             }
 
-            /* Adaptation du menu de navigation pour les mobiles */
-            header .container:first-child {
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
-            }
-            
-            nav {
-                position: relative;
-            }.menu {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                flex-direction: column;
-                background: rgba(30, 30, 50, 0.95);
-                padding: 15px;
-                border-radius: 8px;
-                z-index: 100;
-                gap: 15px;
-                margin-top: 10px;
-                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-            }
-            
-            .menu.active {
-                display: flex;
-                animation: slideDown 0.3s ease forwards;
-            }
-            
-            /* Style pour le bouton menu hamburger */
-            .menu-toggle {
-                display: block;
-                background: none;
-                border: none;
-                color: white;
-                font-size: 24px;
-                cursor: pointer;
-            }
-
             /* Corrections pour les animations sur mobile */
             @keyframes floatCard {
                 0% {
@@ -1068,6 +1070,18 @@ html.is-animating .transition-fade {
             .circle-progress.left .circle-fill {
                 clip-path: unset;
             }
+            
+            /* Optimisations pour le header sur mobile */
+            header .container:first-child {
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                padding: 15px;
+            }
+            
+            .dark-mode-toggle {
+                margin-left: 15px;
+            }
         }
 
         /* Petits appareils mobiles */
@@ -1077,12 +1091,12 @@ html.is-animating .transition-fade {
             }
             
             .logo {
-                font-size: 20px;
+                font-size: 18px;
             }
             
             .logo svg {
-                width: 30px;
-                height: 30px;
+                width: 28px;
+                height: 28px;
             }
             
             .menu {
@@ -1150,14 +1164,14 @@ html.is-animating .transition-fade {
 
         .menu-toggle {
             display: none; /* Masqué par défaut, affiché seulement en mobile via media query */
-            background: linear-gradient(to right, var(--accent-color), var(--accent-color-2));
             color: white;
             border: none;
             border-radius: 5px;
             padding: 5px 10px;
-            font-size: 20px;
+            font-size: 24px;
             cursor: pointer;
             transition: all 0.3s ease;
+            background: none;
         }
 
         .menu-toggle:hover {
@@ -1322,7 +1336,7 @@ html.is-animating .transition-fade {
                 <span>Mickaël</span>
             </div>
             <nav>
-                <!-- Bouton menu hamburger visible uniquement sur mobile -->
+                <!-- Bouton menu hamburger pour mobile -->
                 <button class="menu-toggle" aria-label="Menu de navigation">☰</button>
                 <ul class="menu">
                     <li><a href="#accueil">Accueil</a></li>
@@ -1339,124 +1353,6 @@ html.is-animating .transition-fade {
                 <p>Do You Know Me?</p>
                 <ul>
                     <li><span class="check">✓</span> Je suis Mickaël ED</li>
-                </ul>
-            
-                <p>En tant qu'étudiant développeur d'applications, je combine une solide base technique acquise en formation avec une réelle passion pour l'innovation. Mon approche proactive et ma capacité à m'adapter rapidement aux nouveaux langages et outils font de moi un atout pour votre équipe. En alternance, je m'engage à contribuer activement à vos projets tout en approfondissant mes compétences, créant ainsi une relation gagnant-gagnant pour votre entreprise et mon parcours professionnel.</p>
-                <a href="#contact" class="bouton">Contactez-moi</a>
-            </div>
-            <div class="photo">
-                <img src="image/moi2.jpg" alt="Photo de Mickaël">
-            </div>
-        </div>
-    </header>
-
-    <!-- Section À propos -->
-    <section id="a-propos">
-        <div class="container">
-            <div class="photo">
-                <img src="image/WhatsApp Image 2025-03-20 à 21.30.02_86cdb308.jpg" alt="Photo À propos">
-            </div>
-            <div class="texte">
-                <h2>À propos de moi</h2>
-                <p class="sous-titre">L'excellence, une ligne de code à la fois :</p>
-                <p>Passionné par le développement, je m'efforce de repousser mes limites et d'améliorer mes compétences à chaque projet. Mon objectif ? Transformer des idées en applications fonctionnelles et innovantes.</p>
-                <a href="a-propos.html" class="bouton">a propos de moi</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section Projets -->
-    <section id="projets">
-        <div class="container">
-            <h2>Mes derniers projets</h2>
-            <p class="sous-titre">Découvrez mes derniers projets, réalisés pour des projets académiques ou pour moi-même.</p>
-            
-            <div class="projets-grid">
-                <div class="projet-card" style="--i:0">
-                    <div class="projet-image">
-                        <img src="image/pac-man-jeu-video.jpg" alt="Projet PacMan">
-                        <div class="projet-overlay">
-                            <span class="projet-tag">PacMan</span>
-                            <span class="arrow">↓</span>
-                            <p>Un jeu PacMan classique avec des fonctionnalités modernes.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="projet-card large" style="--i:1">
-                    <div class="projet-image">
-                        <img src="image/IMG_0669 - Copie.jpg" alt="Bibliothèque en ligne">
-                        <div class="projet-overlay">
-                            <span class="projet-tag">bibliothèque en ligne</span>
-                            <span class="arrow">↓</span>
-                            <p>Système de gestion de bibliothèque avec interface intuitive.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="projet-card large" style="--i:2">
-                    <div class="projet-image">
-                        <img src="image/portfolio.webp" alt="Portfolio">
-                        <div class="projet-overlay">
-                            <span class="projet-tag">portfolio</span>
-                            <span class="arrow">↓</span>
-                            <p>Site portfolio responsive avec design moderne.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="projet-card" style="--i:3">
-                    <div class="projet-image">
-                        <img src="image/encours.jpg" alt="Projet en cours">
-                        <div class="projet-overlay">
-                            <span class="projet-tag">projet en cours...</span>
-                            <span class="arrow">↓</span>
-                            <p>Restez à l'affût pour découvrir mon prochain projet.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="all-projects">
-                <a href="tous-les-projets.html" class="bouton">Tous les projets <span class="arrow">→</span></a>
-            </div>
-        </div>
-    </section>
-</head>
-<body>
-    <!-- Conteneur pour les particules -->
-    <div id="particles"></div>
-
-    <!-- Section Accueil -->
-    <header id="accueil">
-        <div class="container">
-            <div class="logo">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" fill="#FF78C4">
-                    <rect x="15" y="5" width="20" height="20" rx="5" fill="#9195F6" />
-                    <circle cx="25" cy="15" r="5" fill="#FF78C4" />
-                    <path d="M20,25 L20,40 Q20,45 15,45" stroke="#FF78C4" stroke-width="2" fill="none" />
-                    <path d="M25,25 L25,45" stroke="#FF78C4" stroke-width="2" fill="none" />
-                    <path d="M30,25 L30,40 Q30,45 35,45" stroke="#FF78C4" stroke-width="2" fill="none" />
-                </svg>
-                <span>Mickaël</span>
-            </div>
-            <nav>
-                <ul class="menu">
-                    <li><a href="#accueil">Accueil</a></li>
-                    <li><a href="a-propos.html">À propos</a></li>
-                    <li><a href="tous-les-projets.html">Projets</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-            <button class="dark-mode-toggle">🌙</button>
-        </div>
-        <div class="container">
-            <div class="texte">
-                <h1>Mickaël Elohim D</h1>
-                <p>Do You Know Me?</p>
-                <ul>
-                    <li><span class="check">✓</span> Je suis Mickaël ED</li>
-
                 </ul>
             
                 <p>En tant qu'étudiant développeur d'applications, je combine une solide base technique acquise en formation avec une réelle passion pour l'innovation. Mon approche proactive et ma capacité à m'adapter rapidement aux nouveaux langages et outils font de moi un atout pour votre équipe. En alternance, je m'engage à contribuer activement à vos projets tout en approfondissant mes compétences, créant ainsi une relation gagnant-gagnant pour votre entreprise et mon parcours professionnel.</p>
@@ -1717,9 +1613,43 @@ html.is-animating .transition-fade {
         </div>
     </section>
 
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Mickaël Elohim D. Tous droits réservés.</p>
+        </div>
+    </footer>
     <script>
-        // Ajout de JavaScript pour les animations des projets
+        // Gestion du menu hamburger pour mobile
         document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const menu = document.querySelector('.menu');
+            
+            if (menuToggle && menu) {
+                menuToggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    menu.classList.toggle('active');
+                    menuToggle.textContent = menu.classList.contains('active') ? '✕' : '☰';
+                });
+                
+                // Fermer le menu quand on clique ailleurs sur la page
+                document.addEventListener('click', function(e) {
+                    if (!menu.contains(e.target) && !menuToggle.contains(e.target) && menu.classList.contains('active')) {
+                        menu.classList.remove('active');
+                        menuToggle.textContent = '☰';
+                    }
+                });
+                
+                // Fermer le menu après avoir cliqué sur un lien
+                const menuLinks = menu.querySelectorAll('a');
+                menuLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        menu.classList.remove('active');
+                        menuToggle.textContent = '☰';
+                    });
+                });
+            }
+
             // Animation d'apparition des projets au défilement
             const observerOptions = {
                 root: null,
@@ -1771,35 +1701,6 @@ html.is-animating .transition-fade {
                     element.classList.add('animate');
                 });
             }, 300);
-
-            // Gestion du menu hamburger pour les appareils mobiles
-            const menuToggle = document.querySelector('.menu-toggle');
-            const menu = document.querySelector('.menu');
-            
-            if (menuToggle && menu) {
-                menuToggle.addEventListener('click', function() {
-                    menu.classList.toggle('active');
-                    // Changer l'icône du menu selon l'état
-                    menuToggle.textContent = menu.classList.contains('active') ? '✕' : '☰';
-                });
-                
-                // Fermer le menu en cliquant à l'extérieur
-                document.addEventListener('click', function(event) {
-                    if (!menu.contains(event.target) && !menuToggle.contains(event.target) && menu.classList.contains('active')) {
-                        menu.classList.remove('active');
-                        menuToggle.textContent = '☰';
-                    }
-                });
-                
-                // Fermer le menu après avoir cliqué sur un lien
-                const menuLinks = menu.querySelectorAll('a');
-                menuLinks.forEach(link => {
-                    link.addEventListener('click', function() {
-                        menu.classList.remove('active');
-                        menuToggle.textContent = '☰';
-                    });
-                });
-            }
             
             // Optimiser les animations sur mobile
             function optimizeMobileAnimations() {
@@ -2015,20 +1916,16 @@ html.is-animating .transition-fade {
             
             // Ajouter l'écouteur d'événement pour le clic
             toggle.addEventListener('click', function() {
-                console.log("Bouton de basculement cliqué");
-                
                 if (document.body.classList.contains('light-mode')) {
                     // Passage au mode sombre
                     toggle.textContent = '🌙';
                     document.body.classList.remove('light-mode');
                     localStorage.setItem('theme', 'dark');
-                    console.log("Mode sombre activé");
                 } else {
                     // Passage au mode clair
                     toggle.textContent = '☀️';
                     document.body.classList.add('light-mode');
                     localStorage.setItem('theme', 'light');
-                    console.log("Mode clair activé");
                 }
             });
         }
