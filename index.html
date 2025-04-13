@@ -1668,6 +1668,90 @@ header nav {
         background-color: rgba(240, 240, 245, 0.7);
     }
 }
+/* Correction du menu mobile */
+
+/* Modification du positionnement du menu */
+@media (max-width: 768px) {
+    .menu {
+        position: fixed !important; /* Force le positionnement fixe */
+        top: 70px !important; /* Position sous la navbar */
+        left: 0 !important;
+        width: 100% !important;
+        z-index: 9999 !important; /* Z-index élevé pour superposer sur tout le contenu */
+        background: rgba(30, 30, 50, 0.95) !important; /* Fond semi-transparent */
+        backdrop-filter: blur(10px) !important;
+        -webkit-backdrop-filter: blur(10px) !important; /* Pour Safari */
+        padding: 20px 0 !important;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3) !important;
+        border-radius: 0 0 15px 15px !important;
+        
+        /* Important : ne pas mettre de position relative/absolute dans le parent */
+    }
+    
+    /* S'assurer que le header a un z-index plus élevé */
+    header nav {
+        position: relative;
+        z-index: 10000 !important; /* Plus haut que le menu */
+    }
+    
+    /* Ajustement des éléments du menu */
+    .menu.active {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+    
+    .menu li {
+        width: 100% !important;
+        text-align: center !important;
+        margin: 10px 0 !important;
+    }
+    
+    .menu li a {
+        display: inline-block !important;
+        width: 80% !important;
+        padding: 12px 0 !important;
+        font-size: 18px !important;
+        opacity: 1 !important;
+    }
+
+    /* Mode clair */
+    body.light-mode .menu {
+        background: rgba(240, 240, 245, 0.95) !important;
+    }
+}
+
+/* Correction pour la navigation */
+.menu-toggle {
+    display: none; /* Caché par défaut sur desktop */
+    font-size: 24px !important;
+    border: none !important;
+    background: none !important;
+    cursor: pointer !important;
+    z-index: 10000 !important; /* S'assurer qu'il reste au-dessus */
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block !important; /* Afficher sur mobile */
+    }
+}
+
+/* Animation du menu */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.menu.active {
+    animation: slideDown 0.3s forwards !important;
+}
     </style>
 </head>
 <body>
@@ -2534,6 +2618,105 @@ function setupTextAnimation() {
         });
     });
 }
+    </script>
+    <script>
+        // Fonction améliorée pour l'initialisation du menu mobile
+function initMobileMenu() {
+    console.log("Initialisation du menu mobile");
+    const menuToggle = document.querySelector('.menu-toggle');
+    const menu = document.querySelector('.menu');
+    
+    if (!menuToggle || !menu) {
+        console.error("Menu ou toggle non trouvé");
+        return;
+    }
+    
+    // S'assurer que le menu est initialement caché sur mobile
+    function updateMenuDisplay() {
+        if (window.innerWidth <= 768) {
+            menu.style.display = 'none'; // Caché sur mobile par défaut
+            menuToggle.style.display = 'block'; // Afficher le bouton hamburger
+            
+            // S'assurer que le menu est positionné correctement
+            menu.style.position = 'fixed';
+            menu.style.top = '70px'; // Ajustez selon la hauteur de votre navbar
+            menu.style.left = '0';
+            menu.style.width = '100%';
+            menu.style.zIndex = '9999';
+        } else {
+            menu.style.display = 'flex'; // Toujours visible sur desktop
+            menuToggle.style.display = 'none'; // Masquer le bouton hamburger
+            menu.classList.remove('active'); // Retirer la classe active
+            
+            // Réinitialiser les styles pour desktop
+            menu.style.position = '';
+            menu.style.top = '';
+            menu.style.left = '';
+            menu.style.width = '';
+        }
+    }
+    
+    // Initialiser l'état du menu
+    updateMenuDisplay();
+    
+    // Mettre à jour lors du redimensionnement
+    window.addEventListener('resize', updateMenuDisplay);
+    
+    // Gérer le clic sur le bouton menu
+    menuToggle.addEventListener('click', function(e) {
+        console.log("Menu toggle cliqué");
+        e.preventDefault();
+        e.stopPropagation();
+        
+        const isActive = menu.classList.contains('active');
+        
+        // Toggle la classe active
+        menu.classList.toggle('active');
+        
+        // Changer l'icône
+        menuToggle.textContent = isActive ? '☰' : '✕';
+        
+        // Gérer l'affichage
+        if (!isActive) {
+            menu.style.display = 'flex';
+            menu.style.animation = 'slideDown 0.3s forwards';
+            
+            // S'assurer qu'il est au-dessus de tout
+            menu.style.zIndex = '9999';
+        } else {
+            // Attendre la fin de l'animation avant de cacher
+            setTimeout(() => {
+                if (!menu.classList.contains('active')) {
+                    menu.style.display = 'none';
+                }
+            }, 300);
+        }
+    });
+    
+    // Fermer le menu après avoir cliqué sur un lien
+    const menuLinks = menu.querySelectorAll('a');
+    menuLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            if (window.innerWidth <= 768) {
+                menu.classList.remove('active');
+                menuToggle.textContent = '☰';
+                
+                // Attendre la fin de l'animation avant de cacher
+                setTimeout(() => {
+                    if (!menu.classList.contains('active')) {
+                        menu.style.display = 'none';
+                    }
+                }, 300);
+            }
+        });
+    });
+}
+
+// Appeler cette fonction dans votre DOMContentLoaded
+document.addEventListener('DOMContentLoaded', function() {
+    initMobileMenu();
+    // autres initialisations...
+});
     </script>
 </body>
 </html>
