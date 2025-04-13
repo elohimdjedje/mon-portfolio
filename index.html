@@ -1803,7 +1803,7 @@ header nav {
 .menu.active {
     animation: slideDown 0.3s forwards !important;
 }
-/* Menu style GitHub */
+/* Menu style GitHub avec ouverture latérale gauche */
 @media (max-width: 768px) {
     /* Configuration de base pour le header */
     header nav {
@@ -1811,20 +1811,31 @@ header nav {
         z-index: 10000 !important;
     }
     
-    /* Positionnement du menu sous le logo */
+    /* Positionnement du menu à gauche du logo */
     .menu {
-        position: absolute !important; /* Au lieu de fixed */
-        top: 100% !important; /* Place juste sous la barre de navigation */
-        left: 0 !important;
-        width: 100% !important;
+        position: absolute !important;
+        top: 100% !important; /* Position sous la barre de navigation */
+        left: 0 !important; /* Commence à gauche */
+        width: 70% !important; /* Largeur partielle pour effet de menu latéral */
+        max-width: 300px !important; /* Largeur maximale */
         z-index: 9999 !important;
         background: rgba(30, 30, 50, 0.95) !important;
         backdrop-filter: blur(10px) !important;
         -webkit-backdrop-filter: blur(10px) !important;
         padding: 15px 0 !important;
         box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3) !important;
-        border-radius: 0 0 15px 15px !important;
+        border-radius: 0 0 15px 0 !important; /* Arrondi à droite uniquement */
         margin-top: 0 !important;
+        transform: translateX(-100%) !important; /* Caché par défaut */
+        transition: transform 0.3s ease !important;
+    }
+    
+    /* Menu actif */
+    .menu.active {
+        transform: translateX(0) !important; /* Visible quand actif */
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
     }
     
     /* Style pour le bouton du menu */
@@ -1838,22 +1849,56 @@ header nav {
         margin-right: 15px !important;
     }
     
-    /* Style pour le menu actif */
+    /* Animation du menu */
+    @keyframes slideRight {
+        from {
+            transform: translateX(-100%);
+        }
+        to {
+            transform: translateX(0);
+        }
+    }
+    
     .menu.active {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        animation: slideDown 0.3s forwards !important;
+        animation: slideRight 0.3s forwards !important;
     }
     
-    /* Ajustement des éléments du header */
-    header .container:first-child {
-        position: relative !important;
+    /* Styling des éléments du menu */
+    .menu li {
+        width: 90% !important; /* Légèrement plus étroit que la largeur du menu */
+        text-align: left !important; /* Aligné à gauche comme GitHub */
+        margin: 8px auto !important;
+        padding-left: 20px !important;
     }
     
-    /* Amélioration de l'affichage de la navbar */
-    .logo {
-        z-index: 10001 !important; /* Au-dessus de tout */
+    .menu li a {
+        display: block !important;
+        width: 100% !important;
+        padding: 10px 0 !important;
+        font-size: 16px !important;
+        opacity: 1 !important;
+        text-align: left !important;
+    }
+    
+    /* Mode clair */
+    body.light-mode .menu {
+        background: rgba(240, 240, 245, 0.95) !important;
+    }
+    
+    /* Overlay pour cliquer à l'extérieur et fermer */
+    .menu-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 9998;
+    }
+    
+    .menu-overlay.active {
+        display: block;
     }
 }
 
@@ -1863,37 +1908,71 @@ header nav {
     align-items: center;
     gap: 15px;
 }
+
+/* Structure de navigation réorganisée */
+@media (max-width: 768px) {
+    header .container:first-child {
+        padding: 10px;
+    }
+    
+    /* Réorganiser la barre de navigation */
+    header nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    /* Groupe pour le logo et le menu */
+    .nav-left {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    /* S'assurer que le logo reste visible */
+    .logo {
+        z-index: 10001 !important;
+        margin-left: 10px;
+    }
+}
     </style>
 </head>
 <body>
     <!-- Conteneur pour les particules -->
     <div id="particles"></div>
 
-    <!-- Section Accueil -->
-    <header id="accueil">
-        <div class="container">
-            <div class="logo">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" fill="#FF78C4">
-                    <rect x="15" y="5" width="20" height="20" rx="5" fill="#9195F6" />
-                    <circle cx="25" cy="15" r="5" fill="#FF78C4" />
-                    <path d="M20,25 L20,40 Q20,45 15,45" stroke="#FF78C4" stroke-width="2" fill="none" />
-                    <path d="M25,25 L25,45" stroke="#FF78C4" stroke-width="2" fill="none" />
-                    <path d="M30,25 L30,40 Q30,45 35,45" stroke="#FF78C4" stroke-width="2" fill="none" />
-                </svg>
-                <span>Mickaël</span>
-            </div>
-            <nav>
+   <!-- Section Accueil -->
+<header id="accueil">
+    <div class="container">
+        <nav>
+            <div class="nav-left">
                 <!-- Bouton menu hamburger pour mobile -->
                 <button class="menu-toggle" aria-label="Menu de navigation">☰</button>
-                <ul class="menu">
-                    <li><a href="#accueil">Accueil</a></li>
-                    <li><a href="a-propos.html">À propos</a></li>
-                    <li><a href="tous-les-projets.html">Projets</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
+                
+                <div class="logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" fill="#FF78C4">
+                        <rect x="15" y="5" width="20" height="20" rx="5" fill="#9195F6" />
+                        <circle cx="25" cy="15" r="5" fill="#FF78C4" />
+                        <path d="M20,25 L20,40 Q20,45 15,45" stroke="#FF78C4" stroke-width="2" fill="none" />
+                        <path d="M25,25 L25,45" stroke="#FF78C4" stroke-width="2" fill="none" />
+                        <path d="M30,25 L30,40 Q30,45 35,45" stroke="#FF78C4" stroke-width="2" fill="none" />
+                    </svg>
+                    <span>Mickaël</span>
+                </div>
+            </div>
+            
+            <!-- Menu qui s'ouvrira sur la gauche -->
+            <ul class="menu">
+                <li><a href="#accueil">Accueil</a></li>
+                <li><a href="a-propos.html">À propos</a></li>
+                <li><a href="tous-les-projets.html">Projets</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            
+            <!-- Bouton thème à droite -->
             <button class="dark-mode-toggle">🌙</button>
-        </div>
+        </nav>
+        
         <div class="container">
             <div class="texte">
                 <h1>Mickaël Elohim D</h1>
@@ -1901,7 +1980,7 @@ header nav {
                 <ul>
                     <li><span class="check">✓</span> Je suis Mickaël ED</li>
                 </ul>
-            
+                
                 <p>En tant qu'étudiant développeur d'applications, je combine une solide base technique acquise en formation avec une réelle passion pour l'innovation. Mon approche proactive et ma capacité à m'adapter rapidement aux nouveaux langages et outils font de moi un atout pour votre équipe. En alternance, je m'engage à contribuer activement à vos projets tout en approfondissant mes compétences, créant ainsi une relation gagnant-gagnant pour votre entreprise et mon parcours professionnel.</p>
                 <a href="#contact" class="bouton">Contactez-moi</a>
             </div>
@@ -1909,8 +1988,8 @@ header nav {
                 <img src="image/moi2.jpg" alt="Photo de Mickaël">
             </div>
         </div>
-    </header>
-
+    </div>
+</header>
     <!-- Section À propos -->
     <section id="a-propos">
         <div class="container">
@@ -2196,44 +2275,83 @@ document.addEventListener('DOMContentLoaded', function() {
     detectMobileDevice();
 });
 
+// Fonction améliorée pour l'initialisation du menu style GitHub latéral
 function initMobileMenu() {
-    console.log("Initialisation du menu mobile style GitHub");
+    console.log("Initialisation du menu mobile style GitHub latéral");
     const menuToggle = document.querySelector('.menu-toggle');
     const menu = document.querySelector('.menu');
-    const navBar = document.querySelector('header nav');
+    const body = document.body;
     
-    if (!menuToggle || !menu || !navBar) {
-        console.error("Menu, toggle ou navbar non trouvé");
+    if (!menuToggle || !menu) {
+        console.error("Menu ou toggle non trouvé");
         return;
+    }
+    
+    // Créer l'overlay pour fermer le menu en cliquant ailleurs
+    let overlay = document.querySelector('.menu-overlay');
+    if (!overlay) {
+        overlay = document.createElement('div');
+        overlay.classList.add('menu-overlay');
+        document.body.appendChild(overlay);
     }
     
     // S'assurer que le menu est initialement caché sur mobile
     function updateMenuDisplay() {
         if (window.innerWidth <= 768) {
-            menu.style.display = 'none';
+            // Caché par défaut avec transformX
+            menu.style.display = 'flex';
+            menu.style.transform = 'translateX(-100%)';
             menuToggle.style.display = 'block';
             
-            // Positionner le menu comme absolu sous la navbar
+            // Position et style du menu
             menu.style.position = 'absolute';
             menu.style.top = '100%';
             menu.style.left = '0';
-            menu.style.width = '100%';
+            menu.style.width = '70%';
+            menu.style.maxWidth = '300px';
             menu.style.zIndex = '9999';
+            menu.style.transition = 'transform 0.3s ease';
             
-            // Calculer la bonne position pour le menu
-            const navRect = navBar.getBoundingClientRect();
-            menu.style.width = navRect.width + 'px';
+            // S'assurer que le menu est aligné à gauche
+            menu.style.borderRadius = '0 0 15px 0';
+            
+            // Ajuster les éléments du menu pour qu'ils soient alignés à gauche
+            const menuItems = menu.querySelectorAll('li');
+            menuItems.forEach(item => {
+                item.style.textAlign = 'left';
+                item.style.paddingLeft = '20px';
+                const link = item.querySelector('a');
+                if (link) {
+                    link.style.textAlign = 'left';
+                }
+            });
             
         } else {
+            // Réinitialiser les styles pour desktop
             menu.style.display = 'flex';
+            menu.style.transform = '';
+            menu.style.transition = '';
             menuToggle.style.display = 'none';
             menu.classList.remove('active');
+            overlay.classList.remove('active');
             
-            // Réinitialiser les styles pour desktop
             menu.style.position = '';
             menu.style.top = '';
             menu.style.left = '';
             menu.style.width = '';
+            menu.style.maxWidth = '';
+            menu.style.borderRadius = '';
+            
+            // Réinitialiser le style des éléments du menu
+            const menuItems = menu.querySelectorAll('li');
+            menuItems.forEach(item => {
+                item.style.textAlign = '';
+                item.style.paddingLeft = '';
+                const link = item.querySelector('a');
+                if (link) {
+                    link.style.textAlign = '';
+                }
+            });
         }
     }
     
@@ -2253,26 +2371,46 @@ function initMobileMenu() {
         
         // Toggle la classe active
         menu.classList.toggle('active');
+        overlay.classList.toggle('active');
         
         // Changer l'icône
         menuToggle.textContent = isActive ? '☰' : '✕';
         
         // Gérer l'affichage
         if (!isActive) {
-            menu.style.display = 'flex';
-            menu.style.animation = 'slideDown 0.3s forwards';
-            
-            // S'assurer qu'il est au-dessus de tout
-            menu.style.zIndex = '9999';
+            menu.style.transform = 'translateX(0)';
         } else {
-            // Attendre la fin de l'animation avant de cacher
-            setTimeout(() => {
-                if (!menu.classList.contains('active')) {
-                    menu.style.display = 'none';
-                }
-            }, 300);
+            menu.style.transform = 'translateX(-100%)';
         }
     });
+    
+    // Fermer le menu en cliquant sur l'overlay
+    overlay.addEventListener('click', function() {
+        menu.classList.remove('active');
+        overlay.classList.remove('active');
+        menuToggle.textContent = '☰';
+        menu.style.transform = 'translateX(-100%)';
+    });
+    
+    // Fermer le menu après avoir cliqué sur un lien
+    const menuLinks = menu.querySelectorAll('a');
+    menuLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            if (window.innerWidth <= 768) {
+                menu.classList.remove('active');
+                overlay.classList.remove('active');
+                menuToggle.textContent = '☰';
+                menu.style.transform = 'translateX(-100%)';
+            }
+        });
+    });
+}
+
+// Appeler la fonction une fois le DOM chargé
+document.addEventListener('DOMContentLoaded', function() {
+    initMobileMenu();
+    // Les autres initialisations restent les mêmes...
+});
     
     // Fermer le menu en cliquant ailleurs
     document.addEventListener('click', function(e) {
@@ -2306,7 +2444,7 @@ function initMobileMenu() {
             }
         });
     });
-}
+
 
 // Mode sombre/clair
 function setupDarkModeToggle() {
