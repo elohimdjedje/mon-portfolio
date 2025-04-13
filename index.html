@@ -918,6 +918,296 @@
                 font-size: 16px;
             }
         }
+
+        /* Ajout d'animations supplémentaires */
+
+/* 1. Animation de défilement pour l'en-tête */
+@keyframes slideInFromLeft {
+    0% {
+        transform: translateX(-100px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInFromRight {
+    0% {
+        transform: translateX(100px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+header .texte {
+    animation: slideInFromLeft 1s ease-out forwards;
+}
+
+header .photo {
+    animation: slideInFromRight 1s ease-out forwards;
+}
+
+/* 2. Animation pour le logo */
+@keyframes logoGlow {
+    0% {
+        filter: drop-shadow(0 0 2px rgba(145, 149, 246, 0.6));
+    }
+    50% {
+        filter: drop-shadow(0 0 8px rgba(255, 120, 196, 0.8));
+    }
+    100% {
+        filter: drop-shadow(0 0 2px rgba(145, 149, 246, 0.6));
+    }
+}
+
+.logo svg {
+    animation: logoGlow 3s infinite;
+}
+
+/* 3. Animation de pulsation pour les boutons */
+@keyframes buttonPulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.bouton {
+    transition: all 0.3s ease;
+}
+
+.bouton:hover {
+    animation: buttonPulse 1s infinite;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(145, 149, 246, 0.5);
+}
+
+/* 4. Animation pour les titres de section */
+@keyframes titleReveal {
+    0% {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+section h2 {
+    opacity: 0;
+}
+
+section.visible h2 {
+    animation: titleReveal 0.8s ease forwards;
+}
+
+/* 5. Animation pour les icônes de compétences */
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.competence:hover .circle-container {
+    animation: bounce 0.8s ease infinite;
+}
+
+/* 6. Animation pour le menu latéral */
+@keyframes menuGradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.sidebar.active {
+    background: linear-gradient(-45deg, rgba(30, 30, 50, 0.95), rgba(40, 40, 70, 0.95));
+    background-size: 200% 200%;
+    animation: menuGradient 10s ease infinite;
+}
+
+/* 7. Animation pour les éléments du formulaire de contact */
+@keyframes formItemFade {
+    0% {
+        transform: translateX(-20px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.contact-form label,
+.contact-form input,
+.contact-form textarea,
+.contact-form button {
+    opacity: 0;
+}
+
+.contact-form.visible label {
+    animation: formItemFade 0.5s ease forwards;
+}
+
+.contact-form.visible input,
+.contact-form.visible textarea {
+    animation: formItemFade 0.5s ease forwards;
+    animation-delay: 0.2s;
+}
+
+.contact-form.visible button {
+    animation: formItemFade 0.5s ease forwards;
+    animation-delay: 0.4s;
+}
+
+/* 8. Animation pour les icônes sociales */
+@keyframes socialIconPop {
+    0% {
+        transform: scale(0);
+    }
+    70% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.social-icon {
+    transform: scale(0);
+}
+
+.social-links.visible .social-icon {
+    animation: socialIconPop 0.5s ease forwards;
+}
+
+.social-links.visible .social-icon:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.social-links.visible .social-icon:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.social-links.visible .social-icon:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+/* 9. Animation de scroll pour la navbar */
+@keyframes navbarShrink {
+    0% {
+        padding: 15px 0;
+    }
+    100% {
+        padding: 8px 0;
+    }
+}
+
+.navbar.scrolled {
+    animation: navbarShrink 0.3s forwards;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* 10. Animation pour le mode sombre/clair */
+.transition-theme {
+    transition: all 0.5s ease;
+}
+
+/* Ajouter cette classe à body et tous les éléments qui doivent avoir une transition douce */
+body, 
+.navbar, 
+.sidebar, 
+.container, 
+.projet-card, 
+.competence, 
+.contact-form input,
+.contact-form textarea {
+    transition: background-color 0.5s ease, color 0.5s ease, box-shadow 0.5s ease;
+}
+
+/* Animations pour les photos */
+@keyframes photoZoom {
+    0% { transform: scale(1); filter: brightness(0.8); }
+    50% { transform: scale(1.05); filter: brightness(1.1); }
+    100% { transform: scale(1); filter: brightness(0.8); }
+}
+
+@keyframes photoBorderGlow {
+    0% { box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); }
+    50% { box-shadow: 0 15px 40px rgba(145, 149, 246, 0.5), 0 0 20px rgba(255, 120, 196, 0.5); }
+    100% { box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); }
+}
+
+header .photo img,
+#a-propos .photo img {
+    animation: photoZoom 8s infinite, photoBorderGlow 6s infinite;
+    transition: all 0.5s ease;
+}
+
+header .photo img:hover,
+#a-propos .photo img:hover {
+    animation-play-state: paused;
+    transform: scale(1.08) rotate(1deg);
+    filter: contrast(1.2) brightness(1.1);
+    box-shadow: 0 20px 50px rgba(145, 149, 246, 0.6), 0 0 30px rgba(255, 120, 196, 0.6);
+}
+
+/* Effet de flottement léger pour les photos */
+@keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+}
+
+header .photo,
+#a-propos .photo {
+    animation: float 6s ease-in-out infinite;
+}
+
+/* Animation au hover pour la photo de profil */
+header .photo {
+    position: relative;
+    overflow: visible;
+}
+
+header .photo::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: linear-gradient(45deg, var(--accent-color), var(--accent-color-2));
+    border-radius: 25px;
+    z-index: -1;
+    opacity: 0;
+    transform: scale(0.9);
+    transition: all 0.4s ease;
+}
+
+header .photo:hover::after {
+    opacity: 0.4;
+    transform: scale(1.02);
+}
     </style>
 </head>
 <body>
@@ -1242,237 +1532,790 @@
 
     <!-- JavaScript -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // NAVIGATION ET MENU MOBILE
-            initNavigation();
+       document.addEventListener('DOMContentLoaded', function() {
+    // NAVIGATION ET MENU MOBILE
+    initNavigation();
+    initMobileMenu();
+    
+    // FONCTIONNALITÉS GÉNÉRALES
+    setupDarkModeToggle();
+    setupCardTilt();
+    setupTextAnimation();
+    
+    // ANIMATIONS
+    initParticles();
+    initProjectsAnimation();
+    initCompetencesAnimation();
+    animateSections();
+    initPhotoEffects();
+    setupSmoothScrolling();
+    
+    // DÉTECTION DE TYPE D'APPAREIL
+    detectDeviceType();
+    optimizeMobileAnimations();
+    
+    // EFFETS AVANCÉS
+    initScrollEffects();
+    initProjectCardEffects();
+    enhanceDarkModeToggle();
+    
+    // Ajouter des styles pour l'animation de rotation
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes rotateToggle {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .rotate-toggle {
+            animation: rotateToggle 0.5s ease forwards;
+        }
+    `;
+    document.head.appendChild(style);
+});
+
+// Initialisation du menu mobile
+function initMobileMenu() {
+    console.log("Initialisation du menu mobile");
+    const menuToggle = document.querySelector('.menu-toggle');
+    const menu = document.querySelector('.menu');
+    
+    if (!menuToggle || !menu) {
+        console.error("Menu ou toggle non trouvé");
+        return;
+    }
+    
+    // S'assurer que le menu est initialement caché sur mobile
+    function updateMenuDisplay() {
+        if (window.innerWidth <= 768) {
+            menu.style.display = 'none';
+            menuToggle.style.display = 'block';
+        } else {
+            menu.style.display = 'flex';
+            menuToggle.style.display = 'none';
+            menu.classList.remove('active');
+        }
+    }
+    
+    // Initialiser l'état du menu
+    updateMenuDisplay();
+    
+    // Mettre à jour lors du redimensionnement
+    window.addEventListener('resize', updateMenuDisplay);
+    
+    // Gérer le clic sur le bouton menu
+    menuToggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        const isActive = menu.classList.contains('active');
+        menu.classList.toggle('active');
+        menuToggle.textContent = isActive ? '☰' : '✕';
+        
+        if (!isActive) {
+            menu.style.display = 'flex';
+            menu.style.animation = 'slideDown 0.3s forwards';
+        } else {
+            setTimeout(() => {
+                if (!menu.classList.contains('active')) {
+                    menu.style.display = 'none';
+                }
+            }, 300);
+        }
+    });
+    
+    // Fermer le menu en cliquant ailleurs
+    document.addEventListener('click', function(e) {
+        if (window.innerWidth <= 768 && !menu.contains(e.target) && !menuToggle.contains(e.target) && menu.classList.contains('active')) {
+            menu.classList.remove('active');
+            menuToggle.textContent = '☰';
             
-            // FONCTIONNALITÉS GÉNÉRALES
-            setupDarkModeToggle();
+            setTimeout(() => {
+                if (!menu.classList.contains('active')) {
+                    menu.style.display = 'none';
+                }
+            }, 300);
+        }
+    });
+    
+    // Fermer le menu après avoir cliqué sur un lien
+    const menuLinks = menu.querySelectorAll('a');
+    menuLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            if (window.innerWidth <= 768) {
+                menu.classList.remove('active');
+                menuToggle.textContent = '☰';
+                
+                setTimeout(() => {
+                    if (!menu.classList.contains('active')) {
+                        menu.style.display = 'none';
+                    }
+                }, 300);
+            }
+        });
+    });
+}
+
+// Initialisation de la navigation et du menu mobile
+function initNavigation() {
+    const menuToggle = document.getElementById('menuToggle');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('overlay');
+    const menuLinks = document.querySelectorAll('.nav-menu a');
+    
+    // Fonction pour ouvrir/fermer le menu
+    function toggleMenu() {
+        sidebar.classList.toggle('active');
+        
+        if (sidebar.classList.contains('active')) {
+            overlay.style.display = 'block';
+            menuToggle.textContent = '✕';
+        } else {
+            overlay.style.display = 'none';
+            menuToggle.textContent = '☰';
+        }
+    }
+    
+    // Événement pour le bouton du menu
+    menuToggle.addEventListener('click', toggleMenu);
+    
+    // Fermer le menu en cliquant sur l'overlay
+    overlay.addEventListener('click', toggleMenu);
+    
+    // Fermer le menu en cliquant sur un lien
+    menuLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            if (sidebar.classList.contains('active')) {
+                toggleMenu();
+            }
+        });
+    });
+    
+    // Smooth scroll pour les liens d'ancrage
+    const anchorLinks = document.querySelectorAll('a[href^="#"]');
+    anchorLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            const targetId = this.getAttribute('href');
             
-            // ANIMATIONS
-            initParticles();
-            initProjectsAnimation();
-            initCompetencesAnimation();
+            if (targetId === '#') return;
             
-            // DÉTECTION DE TYPE D'APPAREIL
-            detectDeviceType();
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                e.preventDefault();
+                const offsetTop = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+}
+
+// Basculement entre mode clair et sombre
+function setupDarkModeToggle() {
+    console.log("Configuration du mode sombre/clair");
+    const toggle = document.getElementById('darkModeToggle');
+    const body = document.body;
+    
+    if (!toggle) {
+        console.error("Bouton de toggle non trouvé");
+        return;
+    }
+    
+    // Ajouter des classes pour une transition fluide
+    document.body.classList.add('transition-theme');
+    const containers = document.querySelectorAll('.container');
+    containers.forEach(container => {
+        container.classList.add('transition-theme');
+    });
+    
+    // Vérifier le thème enregistré
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
+        body.classList.add('light-mode');
+        toggle.textContent = '☀️';
+    } else {
+        body.classList.remove('light-mode');
+        toggle.textContent = '🌙';
+    }
+    
+    // Événement pour le bouton de mode
+    toggle.addEventListener('click', function() {
+        body.classList.toggle('light-mode');
+        
+        if (body.classList.contains('light-mode')) {
+            toggle.textContent = '☀️';
+            localStorage.setItem('theme', 'light');
+        } else {
+            toggle.textContent = '🌙';
+            localStorage.setItem('theme', 'dark');
+        }
+    });
+}
+
+// Initialisation des particules
+function initParticles() {
+    console.log("Initialisation des particules");
+    const particlesContainer = document.getElementById('particles');
+    
+    if (!particlesContainer) return;
+    
+    // Nettoyer le conteneur
+    particlesContainer.innerHTML = '';
+    
+    // Nombre de particules en fonction de la taille de l'écran
+    const particleCount = window.innerWidth <= 768 ? 20 : 40;
+    
+    for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        
+        // Position aléatoire
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.top = Math.random() * 100 + '%';
+        
+        // Taille aléatoire
+        const size = Math.random() * 3 + 1;
+        particle.style.width = size + 'px';
+        particle.style.height = size + 'px';
+        
+        // Animation légèrement différente pour chaque particule
+        particle.style.animationDuration = (Math.random() * 6 + 5) + 's';
+        particle.style.animationDelay = (Math.random() * 5) + 's';
+        
+        particlesContainer.appendChild(particle);
+    }
+}
+
+// Animation des projets
+function initProjectsAnimation() {
+    console.log("Initialisation des animations de projets");
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.2 });
+    
+    const projectCards = document.querySelectorAll('.projet-card');
+    projectCards.forEach(card => {
+        observer.observe(card);
+    });
+    
+    // Animation au survol
+    projectCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            projectCards.forEach(otherCard => {
+                if (otherCard !== card) {
+                    otherCard.style.opacity = '0.6';
+                    otherCard.style.transform = 'scale(0.95)';
+                }
+            });
         });
 
-        // Initialisation de la navigation et du menu mobile
-        function initNavigation() {
-            const menuToggle = document.getElementById('menuToggle');
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.getElementById('overlay');
-            const menuLinks = document.querySelectorAll('.nav-menu a');
-            
-            // Fonction pour ouvrir/fermer le menu
-            function toggleMenu() {
-                sidebar.classList.toggle('active');
-                
-                if (sidebar.classList.contains('active')) {
-                    overlay.style.display = 'block';
-                    menuToggle.textContent = '✕';
-                } else {
-                    overlay.style.display = 'none';
-                    menuToggle.textContent = '☰';
-                }
+        card.addEventListener('mouseleave', function() {
+            projectCards.forEach(otherCard => {
+                otherCard.style.opacity = '1';
+                otherCard.style.transform = '';
+            });
+        });
+    });
+}
+
+// Animation des cercles de compétences
+function initCompetencesAnimation() {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateSkillCircles();
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.3 });
+    
+    const competencesSection = document.getElementById('competences');
+    if (competencesSection) {
+        observer.observe(competencesSection);
+    }
+}
+
+// Animation des cercles de pourcentage
+function animateSkillCircles() {
+    console.log("Animation des cercles de compétences");
+    const competences = document.querySelectorAll('.competence');
+    
+    competences.forEach(competence => {
+        const pourcentage = competence.getAttribute('data-pourcentage');
+        const leftFill = competence.querySelector('.circle-progress.left .circle-fill');
+        const rightFill = competence.querySelector('.circle-progress.right .circle-fill');
+        const percentageText = competence.querySelector('.circle-inner');
+        
+        // Réinitialiser l'animation
+        if (leftFill) leftFill.style.transform = 'rotate(0deg)';
+        if (rightFill) rightFill.style.transform = 'rotate(0deg)';
+        if (percentageText) percentageText.textContent = '0%';
+        
+        // Animation du pourcentage
+        let startPercent = 0;
+        const duration = 1500;
+        const interval = 20;
+        const increment = (pourcentage / duration) * interval;
+        
+        const updatePercent = setInterval(() => {
+            startPercent += increment;
+            if (startPercent >= pourcentage) {
+                startPercent = pourcentage;
+                clearInterval(updatePercent);
             }
             
-            // Événement pour le bouton du menu
-            menuToggle.addEventListener('click', toggleMenu);
+            if (percentageText) {
+                percentageText.textContent = Math.round(startPercent) + '%';
+            }
             
-            // Fermer le menu en cliquant sur l'overlay
-            overlay.addEventListener('click', toggleMenu);
+            // Animation des cercles
+            const angle = (startPercent / 100) * 360;
             
-            // Fermer le menu en cliquant sur un lien
-            menuLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    if (sidebar.classList.contains('active')) {
-                        toggleMenu();
-                    }
-                });
-            });
-            
-            // Smooth scroll pour les liens d'ancrage
-            const anchorLinks = document.querySelectorAll('a[href^="#"]');
-            anchorLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    const targetId = this.getAttribute('href');
-                    
-                    if (targetId === '#') return;
-                    
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        e.preventDefault();
-                        const offsetTop = targetElement.getBoundingClientRect().top + window.pageYOffset;
-                        
-                        window.scrollTo({
-                            top: offsetTop,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-        }
-
-        // Basculement entre mode clair et sombre
-        function setupDarkModeToggle() {
-            const toggle = document.getElementById('darkModeToggle');
-            const body = document.body;
-            
-            // Vérifier le thème enregistré
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'light') {
-                body.classList.add('light-mode');
-                toggle.textContent = '☀️';
+            if (angle <= 180) {
+                if (rightFill) rightFill.style.transform = `rotate(${angle}deg)`;
             } else {
-                body.classList.remove('light-mode');
-                toggle.textContent = '🌙';
+                if (rightFill) rightFill.style.transform = 'rotate(180deg)';
+                if (leftFill) leftFill.style.transform = `rotate(${angle - 180}deg)`;
+            }
+        }, interval);
+    });
+}
+
+// Animation des sections au défilement
+function animateSections() {
+    console.log("Animation des sections");
+    const sections = document.querySelectorAll('section');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -100px 0px' });
+    
+    sections.forEach(section => {
+        section.style.opacity = '0';
+        section.style.transform = 'translateY(50px)';
+        section.style.transition = 'opacity 1s ease, transform 1s ease';
+        observer.observe(section);
+    });
+}
+
+// Détection du type d'appareil
+function detectDeviceType() {
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
+    
+    if (isMobile) {
+        document.body.classList.add('mobile-device');
+        
+        // Optimisations pour mobile
+        const projectCards = document.querySelectorAll('.projet-card');
+        projectCards.forEach(card => {
+            card.addEventListener('touchstart', () => {
+                card.classList.add('touch-active');
+            });
+            
+            card.addEventListener('touchend', () => {
+                setTimeout(() => {
+                    card.classList.remove('touch-active');
+                }, 300);
+            });
+        });
+    }
+}
+
+// Optimiser les animations sur mobile
+function optimizeMobileAnimations() {
+    console.log("Optimisation des animations pour mobile");
+    if (window.innerWidth <= 768) {
+        // Réduire la complexité des animations sur mobile
+        const particles = document.querySelectorAll('.particle');
+        particles.forEach((particle, index) => {
+            // Réduire le nombre de particules sur mobile
+            if (index % 2 === 0) {
+                particle.style.display = 'none';
+            }
+        });
+        
+        document.body.classList.add('mobile-optimized');
+    } else {
+        document.body.classList.remove('mobile-optimized');
+    }
+    
+    // Écouter les redimensionnements
+    window.addEventListener('resize', function() {
+        if (window.innerWidth <= 768) {
+            document.body.classList.add('mobile-optimized');
+        } else {
+            document.body.classList.remove('mobile-optimized');
+        }
+    });
+}
+
+// Détecter le scroll pour animer la navbar
+function initScrollEffects() {
+    const navbar = document.querySelector('.navbar');
+    const sections = document.querySelectorAll('section');
+    const contactForm = document.querySelector('.contact-form');
+    const socialLinks = document.querySelector('.social-links');
+    
+    // Ajouter la classe visible aux sections quand elles sont visibles
+    const observerOptions = {
+        threshold: 0.2,
+        rootMargin: '0px 0px -100px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, observerOptions);
+    
+    // Observer toutes les sections
+    sections.forEach(section => {
+        observer.observe(section);
+    });
+    
+    // Observer le formulaire de contact et les liens sociaux
+    if (contactForm) observer.observe(contactForm);
+    if (socialLinks) observer.observe(socialLinks);
+    
+    // Animation navbar au scroll
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+    
+    // Animation des particules plus élaborée
+    enhanceParticles();
+}
+
+// Amélioration des particules
+function enhanceParticles() {
+    const particles = document.querySelectorAll('.particle');
+    
+    // Ajouter des mouvements aléatoires aux particules
+    particles.forEach(particle => {
+        // Appliquer des transformations aléatoires
+        setInterval(() => {
+            const randomX = Math.random() * 20 - 10; // Entre -10 et 10px
+            const randomY = Math.random() * 20 - 10;
+            const randomRotate = Math.random() * 360;
+            
+            particle.style.transform = `translate(${randomX}px, ${randomY}px) rotate(${randomRotate}deg)`;
+            
+            // Changer occasionnellement la taille
+            if (Math.random() > 0.7) {
+                const size = Math.random() * 3 + 1;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
             }
             
-            // Événement pour le bouton de mode
-            toggle.addEventListener('click', function() {
-                body.classList.toggle('light-mode');
+            // Changer occasionnellement l'opacité
+            if (Math.random() > 0.8) {
+                particle.style.opacity = Math.random() * 0.5 + 0.1;
+            }
+        }, 3000 + Math.random() * 2000); // Intervalle aléatoire
+    });
+}
+
+// Animation 3D pour les cartes de projet
+function initProjectCardEffects() {
+    const projectCards = document.querySelectorAll('.projet-card');
+    
+    projectCards.forEach(card => {
+        // Effet 3D au survol (uniquement sur desktop)
+        if (window.innerWidth > 768) {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
                 
-                if (body.classList.contains('light-mode')) {
-                    toggle.textContent = '☀️';
-                    localStorage.setItem('theme', 'light');
-                } else {
-                    toggle.textContent = '🌙';
-                    localStorage.setItem('theme', 'dark');
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const angleY = (x - centerX) / 20;
+                const angleX = (centerY - y) / 20;
+                
+                card.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg) scale(1.05)`;
+                card.style.transition = 'transform 0.1s';
+                
+                // Effet de lueur qui suit le curseur
+                const glowElement = document.createElement('div');
+                glowElement.classList.add('card-glow');
+                glowElement.style.position = 'absolute';
+                glowElement.style.top = `${y}px`;
+                glowElement.style.left = `${x}px`;
+                glowElement.style.width = '50px';
+                glowElement.style.height = '50px';
+                glowElement.style.borderRadius = '50%';
+                glowElement.style.background = 'radial-gradient(circle, rgba(255,120,196,0.3) 0%, rgba(255,255,255,0) 70%)';
+                glowElement.style.pointerEvents = 'none';
+                
+                // Supprimer l'ancienne lueur s'il y en a une
+                const existingGlow = card.querySelector('.card-glow');
+                if (existingGlow) {
+                    existingGlow.remove();
+                }
+                
+                card.appendChild(glowElement);
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = '';
+                card.style.transition = 'transform 0.5s';
+                
+                // Supprimer l'effet de lueur
+                const glow = card.querySelector('.card-glow');
+                if (glow) {
+                    glow.remove();
                 }
             });
         }
+    });
+}
 
-        // Initialisation des particules
-        function initParticles() {
-            const particlesContainer = document.getElementById('particles');
-            
-            if (!particlesContainer) return;
-            
-            // Nettoyer le conteneur
-            particlesContainer.innerHTML = '';
-            
-            // Nombre de particules en fonction de la taille de l'écran
-            const particleCount = window.innerWidth <= 768 ? 20 : 40;
-            
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('particle');
-                
-                // Position aléatoire
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = Math.random() * 100 + '%';
-                
-                // Taille aléatoire
-                const size = Math.random() * 3 + 1;
-                particle.style.width = size + 'px';
-                particle.style.height = size + 'px';
-                
-                // Animation légèrement différente pour chaque particule
-                particle.style.animationDuration = (Math.random() * 6 + 5) + 's';
-                particle.style.animationDelay = (Math.random() * 5) + 's';
-                
-                particlesContainer.appendChild(particle);
+// Animation pour l'effet de frappe sur le titre principal
+function initTypingEffect() {
+    const title = document.querySelector('h1');
+    
+    if (title && window.innerWidth > 768) { // Seulement sur desktop
+        const originalText = title.textContent;
+        title.textContent = '';
+        
+        let i = 0;
+        const typingSpeed = 100; // Vitesse de frappe en ms
+        
+        function typeWriter() {
+            if (i < originalText.length) {
+                title.textContent += originalText.charAt(i);
+                i++;
+                setTimeout(typeWriter, typingSpeed);
             }
         }
+        
+        // Démarrer l'animation après un court délai
+        setTimeout(typeWriter, 500);
+    }
+}
 
-        // Animation des projets
-        function initProjectsAnimation() {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.2 });
+// Animation pour le bouton switch mode clair/sombre
+function enhanceDarkModeToggle() {
+    const toggle = document.getElementById('darkModeToggle');
+    
+    if (toggle) {
+        toggle.addEventListener('click', function() {
+            // Ajouter une animation lors du clic
+            toggle.classList.add('rotate-toggle');
             
-            const projectCards = document.querySelectorAll('.projet-card');
-            projectCards.forEach(card => {
-                observer.observe(card);
-            });
-        }
+            // Ajouter une transition sur tout le body
+            document.body.classList.add('transition-theme');
+            
+            // Retirer la classe d'animation après qu'elle soit terminée
+            setTimeout(() => {
+                toggle.classList.remove('rotate-toggle');
+            }, 500);
+            
+            // Ajouter un effet de flash à l'écran lors du changement
+            const flash = document.createElement('div');
+            flash.style.position = 'fixed';
+            flash.style.top = '0';
+            flash.style.left = '0';
+            flash.style.width = '100%';
+            flash.style.height = '100%';
+            flash.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+            flash.style.zIndex = '9999';
+            flash.style.pointerEvents = 'none';
+            flash.style.transition = 'opacity 0.5s';
+            
+            document.body.appendChild(flash);
+            
+            // Faire disparaître le flash
+            setTimeout(() => {
+                flash.style.opacity = '0';
+                
+                // Retirer l'élément après la transition
+                setTimeout(() => {
+                    flash.remove();
+                }, 500);
+            }, 50);
+        });
+    }
+}
 
-        // Animation des cercles de compétences
-        function initCompetencesAnimation() {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        animateSkillCircles();
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.3 });
+// Effet 3D pour les cartes
+function setupCardTilt() {
+    console.log("Configuration de l'effet 3D tilt");
+    // Ne pas appliquer l'effet tilt sur les appareils mobiles
+    if (window.innerWidth <= 768) return;
+    
+    const cards = document.querySelectorAll('.projet-card');
+    
+    cards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const cardRect = card.getBoundingClientRect();
+            const cardCenterX = cardRect.left + cardRect.width / 2;
+            const cardCenterY = cardRect.top + cardRect.height / 2;
             
-            const competencesSection = document.getElementById('competences');
-            if (competencesSection) {
-                observer.observe(competencesSection);
+            const mouseX = e.clientX - cardCenterX;
+            const mouseY = e.clientY - cardCenterY;
+            
+            const rotateX = (mouseY / cardRect.height * 15).toFixed(2);
+            const rotateY = (mouseX / cardRect.width * -15).toFixed(2);
+            
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = '';
+        });
+    });
+}
+
+// Navigation fluide
+function setupSmoothScrolling() {
+    console.log("Configuration du défilement fluide");
+    // Sélectionner tous les liens qui commencent par #
+    const anchorLinks = document.querySelectorAll('a[href^="#"]');
+    
+    anchorLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            // Empêcher le comportement par défaut
+            e.preventDefault();
+            
+            // Obtenir l'ID de la cible
+            const targetId = this.getAttribute('href');
+            
+            // Ne rien faire si c'est juste #
+            if (targetId === '#') return;
+            
+            // Trouver l'élément cible
+            const targetElement = document.querySelector(targetId);
+            
+            if (targetElement) {
+                // Calculer la position de défilement
+                const offsetTop = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                
+                // Faire défiler en douceur
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
+                
+                // Fermer le menu mobile si ouvert
+                const menu = document.querySelector('.menu');
+                const menuToggle = document.querySelector('.menu-toggle');
+                
+                if (menu && menu.classList.contains('active')) {
+                    menu.classList.remove('active');
+                    if (menuToggle) menuToggle.textContent = '☰';
+                }
             }
-        }
+        });
+    });
+}
 
-        // Animation des cercles de pourcentage
-        function animateSkillCircles() {
-            const competences = document.querySelectorAll('.competence');
-            
-            competences.forEach(competence => {
-                const pourcentage = competence.getAttribute('data-pourcentage');
-                const leftFill = competence.querySelector('.circle-progress.left .circle-fill');
-                const rightFill = competence.querySelector('.circle-progress.right .circle-fill');
-                const percentageText = competence.querySelector('.circle-inner');
-                
-                // Animation du pourcentage
-                let startPercent = 0;
-                const duration = 1500;
-                const interval = 20;
-                const increment = (pourcentage / duration) * interval;
-                
-                const updatePercent = setInterval(() => {
-                    startPercent += increment;
-                    if (startPercent >= pourcentage) {
-                        startPercent = pourcentage;
-                        clearInterval(updatePercent);
-                    }
-                    
-                    if (percentageText) {
-                        percentageText.textContent = Math.round(startPercent) + '%';
-                    }
-                    
-                    // Animation des cercles
-                    const angle = (startPercent / 100) * 360;
-                    
-                    if (angle <= 180) {
-                        if (rightFill) rightFill.style.transform = `rotate(${angle}deg)`;
-                    } else {
-                        if (rightFill) rightFill.style.transform = 'rotate(180deg)';
-                        if (leftFill) leftFill.style.transform = `rotate(${angle - 180}deg)`;
-                    }
-                }, interval);
-            });
-        }
+// Animation de texte pour le titre principal
+function setupTextAnimation() {
+    console.log("Configuration de l'animation du titre");
+    const title = document.querySelector('h1');
+    if (!title) return;
+    
+    // Ne pas appliquer d'animation complexe sur mobile
+    if (window.innerWidth <= 768) return;
+    
+    const text = title.textContent;
+    title.textContent = '';
+    
+    for (let i = 0; i < text.length; i++) {
+        const span = document.createElement('span');
+        span.textContent = text[i];
+        span.style.display = 'inline-block';
+        span.style.transition = 'transform 0.5s ease, color 0.5s ease';
+        span.style.transitionDelay = `${i * 0.05}s`;
+        title.appendChild(span);
+    }
+    
+    title.addEventListener('mouseenter', () => {
+        const letters = title.querySelectorAll('span');
+        letters.forEach((letter, index) => {
+            setTimeout(() => {
+                letter.style.transform = 'translateY(-10px)';
+                letter.style.color = '#FF78C4';
+            }, index * 50);
+        });
+    });
+    
+    title.addEventListener('mouseleave', () => {
+        const letters = title.querySelectorAll('span');
+        letters.forEach((letter, index) => {
+            setTimeout(() => {
+                letter.style.transform = '';
+                letter.style.color = '';
+            }, index * 50);
+        });
+    });
+}
 
-        // Détection du type d'appareil
-        function detectDeviceType() {
-            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
+// Fonction pour animer les photos avec un effet parallaxe
+function initPhotoEffects() {
+    const photos = document.querySelectorAll('header .photo img, #a-propos .photo img');
+    
+    // Animation de parallaxe au défilement
+    window.addEventListener('scroll', () => {
+        const scrollY = window.scrollY;
+        
+        photos.forEach(photo => {
+            // Calculer le déplacement parallaxe (mouvement léger lors du scroll)
+            const yPos = -(scrollY * 0.04);
             
-            if (isMobile) {
-                document.body.classList.add('mobile-device');
-                
-                // Optimisations pour mobile
-                const projectCards = document.querySelectorAll('.projet-card');
-                projectCards.forEach(card => {
-                    card.addEventListener('touchstart', () => {
-                        card.classList.add('touch-active');
-                    });
-                    
-                    card.addEventListener('touchend', () => {
-                        setTimeout(() => {
-                            card.classList.remove('touch-active');
-                        }, 300);
-                    });
-                });
-            }
-        }
+            // Appliquer la transformation
+            photo.style.transform = `translateY(${yPos}px)`;
+        });
+    });
+    
+    // Effet d'interaction au survol
+    photos.forEach(photo => {
+        photo.addEventListener('mousemove', (e) => {
+            if (window.innerWidth <= 768) return; // Désactiver sur mobile
+            
+            const rect = photo.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            // Calculer la rotation basée sur la position de la souris
+            const rotateX = (centerY - y) / 20;
+            const rotateY = (x - centerX) / 20;
+            
+            // Appliquer l'effet 3D
+            photo.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+        });
+        
+        photo.addEventListener('mouseleave', () => {
+            photo.style.transform = '';
+        });
+    });
+}
     </script>
 </body>
 </html>
