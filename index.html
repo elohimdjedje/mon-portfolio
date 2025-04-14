@@ -1208,6 +1208,94 @@ header .photo:hover::after {
     opacity: 0.4;
     transform: scale(1.02);
 }
+/* À ajouter dans les deux fichiers - Amélioration du contraste texte/fond */
+
+/* Styles communs pour le mode sombre (par défaut) */
+body {
+    background: linear-gradient(-45deg, #1e1e2f, #2d2d44, #1a1a2a, #292938);
+    color: #fff;
+}
+
+h1, h2, h3, .skill-title {
+    color: #fff;
+    text-shadow: 0 0 10px rgba(255, 130, 255, 0.3),
+                 0 0 20px rgba(255, 130, 255, 0.2),
+                 0 0 30px rgba(255, 130, 255, 0.1);
+}
+
+p, .skill-description, .exp-item li, .exp-item .role {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Styles pour le mode clair */
+body.light-mode {
+    background: linear-gradient(-45deg, #f0f0f5, #e0e0e5, #d0d0d5, #e0e0e5);
+    color: #333;
+}
+
+body.light-mode h1, 
+body.light-mode h2, 
+body.light-mode h3,
+body.light-mode .skill-title {
+    color: #333;
+    text-shadow: 0 0 10px rgba(255, 130, 255, 0.1),
+                 0 0 20px rgba(255, 130, 255, 0.1);
+}
+
+body.light-mode p,
+body.light-mode .skill-description {
+    color: #333;
+}
+
+/* Amélioration du contraste pour les textes en mode clair */
+body.light-mode .exp-item .role {
+    color: rgba(0, 0, 0, 0.9);
+}
+
+body.light-mode .exp-item li {
+    color: rgba(0, 0, 0, 0.9);
+}
+
+/* Arrière-plans avec contours plus visibles en mode clair */
+body.light-mode .skills-container,
+body.light-mode .experience-box,
+body.light-mode .navbar,
+body.light-mode .sidebar,
+body.light-mode header {
+    background-color: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .exp-item {
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Amélioration de la lisibilité des liens */
+body.light-mode .menu li a,
+body.light-mode .desktop-menu a,
+body.light-mode .nav-menu a {
+    color: #222;
+}
+
+body.light-mode .experience-box h2 a {
+    color: #222;
+}
+
+/* Ajout d'une transition fluide lors du changement de mode */
+body, 
+.navbar, 
+.sidebar, 
+.container, 
+.projet-card, 
+.competence,
+.skills-container,
+.experience-box,
+.exp-item,
+h1, h2, h3, p, a {
+    transition: background-color 0.5s ease, color 0.5s ease, box-shadow 0.5s ease, text-shadow 0.5s ease;
+}
     </style>
 </head>
 <body>
