@@ -1296,6 +1296,40 @@ body,
 h1, h2, h3, p, a {
     transition: background-color 0.5s ease, color 0.5s ease, box-shadow 0.5s ease, text-shadow 0.5s ease;
 }
+/* Ajoutez ces styles pour le mode sombre (texte blanc avec contour noir) */
+body {
+    background: linear-gradient(-45deg, #1e1e2f, #2d2d44, #1a1a2a, #292938);
+    color: #fff;
+}
+
+h1, h2, h3, p, .skill-title, .skill-description, .desktop-menu a, .nav-menu a, 
+.experience-details, .exp-item li, .exp-item .role, .circle-inner {
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+/* Renforcer la visibilité des titres en mode sombre */
+ h2, h3 {
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000,
+                0 0 10px rgba(255, 130, 255, 0.3),
+                0 0 20px rgba(255, 130, 255, 0.2),
+                0 0 30px rgba(255, 130, 255, 0.1);
+}
+
+/* Supprimer les ombres de texte en mode clair */
+body.light-mode h1, 
+body.light-mode h2, 
+body.light-mode h3,
+body.light-mode p, 
+body.light-mode .skill-title,
+body.light-mode .skill-description,
+body.light-mode .desktop-menu a,
+body.light-mode .nav-menu a,
+body.light-mode .exp-item li, 
+body.light-mode .exp-item .role,
+body.light-mode .circle-inner {
+    text-shadow: none;
+    color: #333;
+}
     </style>
 </head>
 <body>
