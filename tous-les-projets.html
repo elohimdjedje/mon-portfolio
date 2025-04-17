@@ -19,6 +19,7 @@
             min-height: 100vh;
             position: relative;
             overflow-x: hidden;
+            padding-top: 70px; /* Espace pour la navbar fixe */
         }
 
         body::before {
@@ -40,49 +41,187 @@
             padding: 20px;
         }
 
-        header {
+        /* Styles pour la nouvelle navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(30, 30, 50, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 10px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 0;
-            margin-bottom: 30px;
-            background-color: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 10px;
-            padding: 10px 20px;
+            padding: 0 20px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .logo {
             display: flex;
             align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
         }
 
         .logo svg {
-            width: 40px;
-            height: 40px;
+            width: 32px;
+            height: 32px;
+            margin-right: 10px;
         }
 
-        nav ul {
+        .menu-icon {
+            display: none;
+            font-size: 24px;
+            color: white;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 70px;
+            left: -250px;
+            width: 250px;
+            height: calc(100vh - 70px);
+            background-color: rgba(30, 30, 50, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 999;
+            transition: left 0.3s ease;
+            overflow-y: auto;
+            box-shadow: 3px 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .sidebar.active {
+            left: 0;
+        }
+
+        .nav-menu {
+            list-style: none;
+            padding: 20px 0;
+        }
+
+        .nav-menu li {
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav-menu a {
+            display: block;
+            padding: 15px 30px;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .desktop-menu {
             display: flex;
             list-style: none;
         }
 
-        nav ul li {
-            margin-left: 30px;
+        .desktop-menu li {
+            margin: 0 15px;
         }
 
-        nav ul li a {
+        .desktop-menu a {
+            color: white;
             text-decoration: none;
-            color: #fff;
             font-size: 16px;
             opacity: 0.8;
             transition: opacity 0.3s;
         }
 
-        nav ul li a:hover {
+        .desktop-menu a:hover {
             opacity: 1;
         }
 
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+            display: none;
+        }
+
+        /* Mode clair pour la navigation */
+        body.light-mode .navbar,
+        body.light-mode .sidebar {
+            background-color: rgba(240, 240, 245, 0.95);
+        }
+
+        body.light-mode .logo,
+        body.light-mode .menu-icon,
+        body.light-mode .nav-menu a,
+        body.light-mode .desktop-menu a {
+            color: #333;
+        }
+
+        /* Media queries pour la navigation */
+        @media (min-width: 769px) {
+            .menu-icon {
+                display: none;
+            }
+            
+            .sidebar {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding-top: 60px;
+            }
+            
+            .desktop-menu {
+                display: none;
+            }
+            
+            .menu-icon {
+                display: block;
+            }
+        }
+
+        /* Animation pour la navbar au défilement */
+        @keyframes navbarShrink {
+            0% {
+                padding: 15px 0;
+            }
+            100% {
+                padding: 8px 0;
+            }
+        }
+
+        .navbar.scrolled {
+            animation: navbarShrink 0.3s forwards;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Styles existants originaux du fichier projet */
         .dark-mode-toggle {
             background: none;
             border: none;
@@ -356,26 +495,46 @@
 <body>
     <div class="particles" id="particles"></div>
     <div class="container">
-        <header>
-            <div class="logo">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" fill="#FF78C4">
-                    <rect x="15" y="5" width="20" height="20" rx="5" fill="#9195F6" />
-                    <circle cx="25" cy="15" r="5" fill="#FF78C4" />
-                    <path d="M20,25 L20,40 Q20,45 15,45" stroke="#FF78C4" stroke-width="2" fill="none" />
-                    <path d="M25,25 L25,45" stroke="#FF78C4" stroke-width="2" fill="none" />
-                    <path d="M30,25 L30,40 Q30,45 35,45" stroke="#FF78C4" stroke-width="2" fill="none" />
-                </svg>
-            </div>
-            <nav>
-                <ul>
+        <!-- Overlay pour fermer le menu sur mobile -->
+        <div class="overlay" id="overlay"></div>
+
+        <!-- Navbar fixe style Sonna -->
+        <nav class="navbar">
+            <div class="navbar-container">
+                <a href="#" class="logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" fill="#FF78C4">
+                        <rect x="15" y="5" width="20" height="20" rx="5" fill="#9195F6" />
+                        <circle cx="25" cy="15" r="5" fill="#FF78C4" />
+                        <path d="M20,25 L20,40 Q20,45 15,45" stroke="#FF78C4" stroke-width="2" fill="none" />
+                        <path d="M25,25 L25,45" stroke="#FF78C4" stroke-width="2" fill="none" />
+                        <path d="M30,25 L30,40 Q30,45 35,45" stroke="#FF78C4" stroke-width="2" fill="none" />
+                    </svg>
+                    <span>Mickaël</span>
+                </a>
+                
+                <ul class="desktop-menu">
                     <li><a href="index.html">Accueil</a></li>
                     <li><a href="a-propos.html">À propos</a></li>
-                    <li><a href="#">Projets</a></li>
+                    <li><a href="tous-les-projets.html">Projets</a></li>
                     <li><a href="index.html#contact">Contact</a></li>
                 </ul>
-            </nav>
-            <button class="dark-mode-toggle">🌙</button>
-        </header>
+                
+                <div class="nav-controls">
+                    <button class="menu-icon" id="menuToggle">☰</button>
+                    <button class="dark-mode-toggle" id="darkModeToggle">🌙</button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Sidebar menu pour mobile -->
+        <div class="sidebar" id="sidebar">
+            <ul class="nav-menu">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="a-propos.html">À propos</a></li>
+                <li><a href="tous-les-projets.html">Projets</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
 
         <h1>Projets</h1>
         <p class="description">Je travaille constamment sur de nouveaux projets passionnants, donc cette liste change très souvent. Consultez-la régulièrement pour découvrir les nouveaux projets.</p>
@@ -463,6 +622,56 @@
     </div>
 
     <script>
+        // Initialisation de la navigation et du menu mobile
+        function initNavigation() {
+            const menuToggle = document.getElementById('menuToggle');
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('overlay');
+            const menuLinks = document.querySelectorAll('.nav-menu a');
+            
+            if (!menuToggle || !sidebar || !overlay) return;
+            
+            // Fonction pour ouvrir/fermer le menu
+            function toggleMenu() {
+                sidebar.classList.toggle('active');
+                
+                if (sidebar.classList.contains('active')) {
+                    overlay.style.display = 'block';
+                    menuToggle.textContent = '✕';
+                } else {
+                    overlay.style.display = 'none';
+                    menuToggle.textContent = '☰';
+                }
+            }
+            
+            // Événement pour le bouton du menu
+            menuToggle.addEventListener('click', toggleMenu);
+            
+            // Fermer le menu en cliquant sur l'overlay
+            overlay.addEventListener('click', toggleMenu);
+            
+            // Fermer le menu en cliquant sur un lien
+            menuLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    if (sidebar.classList.contains('active')) {
+                        toggleMenu();
+                    }
+                });
+            });
+            
+            // Animation navbar au scroll
+            window.addEventListener('scroll', () => {
+                const navbar = document.querySelector('.navbar');
+                if (navbar) {
+                    if (window.scrollY > 50) {
+                        navbar.classList.add('scrolled');
+                    } else {
+                        navbar.classList.remove('scrolled');
+                    }
+                }
+            });
+        }
+
         // Créer des particules métalliques en arrière-plan
         function createParticles() {
             const particlesContainer = document.getElementById('particles');
@@ -492,27 +701,27 @@
                 particlesContainer.appendChild(particle);
             }
         }
-        <!-- Ajoutez cette fonction à votre script -->
-function showPreview(file) {
-    const previewUrl = `https://view.officeapps.live.com/op/embed.aspx?src=${window.location.href.split('/').slice(0,-1).join('/')}/${file}`;
-    window.open(previewUrl, '_blank');
-}
-
-        // Animation des cartes de projet
-        function animateCards() {
-            const cards = document.querySelectorAll('.project-card');
-            
-            cards.forEach((card, index) => {
-                setTimeout(() => {
-                    card.classList.add('visible');
-                }, 300 * index); // Délai progressif pour l'effet de "locomotive"
-            });
+        
+        // Fonction pour prévisualiser les documents Office
+        function showPreview(file) {
+            const previewUrl = `https://view.officeapps.live.com/op/embed.aspx?src=${window.location.href.split('/').slice(0,-1).join('/')}/${file}`;
+            window.open(previewUrl, '_blank');
         }
 
-        // Fonction pour le toggle mode sombre/clair
+        // Fonction pour le toggle mode sombre/clair - Adaptée pour la nouvelle structure
         function setupDarkModeToggle() {
-            const toggle = document.querySelector('.dark-mode-toggle');
+            const toggle = document.getElementById('darkModeToggle');
             if (!toggle) return;
+            
+            // Vérifier le thème enregistré
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') {
+                document.body.classList.add('light-mode');
+                toggle.textContent = '☀️';
+            } else {
+                document.body.classList.remove('light-mode');
+                toggle.textContent = '🌙';
+            }
             
             toggle.addEventListener('click', () => {
                 if (toggle.textContent === '🌙') {
@@ -525,13 +734,17 @@ function showPreview(file) {
                     localStorage.setItem('theme', 'dark');
                 }
             });
+        }
+
+        // Animation des cartes de projet
+        function animateCards() {
+            const cards = document.querySelectorAll('.project-card');
             
-            // Vérifier le thème enregistré
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'light') {
-                toggle.textContent = '☀️';
-                document.body.classList.add('light-mode');
-            }
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.classList.add('visible');
+                }, 300 * index); // Délai progressif pour l'effet de "locomotive"
+            });
         }
 
         // Animation "3D Tilt" pour les cartes de projets
@@ -566,6 +779,10 @@ function showPreview(file) {
 
         // Exécution au chargement de la page
         window.addEventListener('DOMContentLoaded', () => {
+            // Initialiser la navigation
+            initNavigation();
+            
+            // Fonctions existantes
             createParticles();
             setupDarkModeToggle();
             animateCards();
