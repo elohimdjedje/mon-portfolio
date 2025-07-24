@@ -1234,6 +1234,14 @@ body.light-mode .circle-inner {
     text-shadow: none;
     color: #333;
 }
+@media (max-width: 768px) {
+    .particle { display: none; }
+    body::before { display: none; }
+    *, *::before, *::after {
+        animation-duration: 0.1s !important;
+        transition-duration: 0.1s !important;
+    }
+}
     </style>
 </head>
 <body>
@@ -1515,6 +1523,7 @@ body.light-mode .circle-inner {
     <audio id="clickSound" src="click-sound.mp3"></audio>
     
     <script>
+        
         // --- Initialisation générale ---
         document.addEventListener('DOMContentLoaded', function() {
             initNavigation();
@@ -1524,6 +1533,33 @@ body.light-mode .circle-inner {
             animateSkillCards();
             animateExperienceBoxes();
             createIndicators();
+            const isMobile = window.innerWidth <= 768;
+    
+    if (isMobile) {
+        // Supprimer les particules sur mobile
+        const particles = document.getElementById('particles');
+        if (particles) particles.remove();
+        
+        // Simplifier les animations
+        document.querySelectorAll('.skill-card, .experience-box').forEach(el => {
+            el.style.opacity = '1';
+            el.style.transform = 'translateX(0)';
+        });
+    }
+    
+    try {
+        initNavigation();
+        setupDarkModeToggle();
+        if (!isMobile) {
+            setupPhotoAnimation();
+            initParticles();
+        }
+        animateSkillCards();
+        animateExperienceBoxes();
+        createIndicators();
+    } catch (error) {
+        console.log('Erreur:', error);
+    }
         
             // Animation des barres de niveau
             setTimeout(() => {
@@ -1746,6 +1782,7 @@ body.light-mode .circle-inner {
                 });
             }
         }
+        
         </script>
         
 </body>
